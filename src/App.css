@@ -1,7 +1,13 @@
+body {
+  background-color: #e3fdfd;
+}
+
 .app-wrapper {
+  margin: 10px 30px;
   display: grid;
   grid-template-rows: 100px 1fr;
   grid-template-columns: 3fr 10fr;
+  row-gap: 10px;
   grid-template-areas:
     "h h"
     "n c";
@@ -9,17 +15,22 @@
 
 .header {
   grid-area: h;
-  background-color: rgb(214, 74, 81);
+  background-color: #a6e3e9;
 }
 
 .nav {
   grid-area: n;
-  background-color: rgb(194, 128, 255);
+  background-color: #cbf1f5;
 }
 
-.content {
+.profile {
+  padding: 0 20px;
   grid-area: c;
-  background-color: rgb(251, 173, 173);
+  background-color: #fff;
+}
+
+.profile > img {
+  width: 45vw;
 }
 
 ul {

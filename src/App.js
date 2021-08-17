@@ -1,26 +1,15 @@
 import './App.css'
 import 'logo.svg'
+import Header from './components/Header'
+import Navbar from './components/Navbar'
+import Profile from './components/Profile'
 
 const App = () => {
   return (
     <div className='app-wrapper'>
-      <header className='header'>
-        <img src="https://img.icons8.com/ios-filled/2x/dot-logo.png"/>
-      </header>
-      <nav className='nav'>
-        <ul>
-          <li>Profile</li>
-          <li>Messages</li>
-          <li>News</li>
-          <li>Music</li>
-          <li>Settings</li>
-        </ul>
-      </nav>
-
-      <div className='content'>
-        <h3>Profile description</h3>
-      </div>
-
+      <Header />
+      <Navbar />
+      <Profile />
     </div>
   )
 }
