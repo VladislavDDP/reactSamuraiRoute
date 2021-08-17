@@ -1,7 +1,9 @@
+import logo from '../images/logo.png'
+
 const Header = () => {
     return (
         <div className='header'>
-            <img src="https://img.icons8.com/ios-filled/2x/dot-logo.png"/>
+            <img class='logo' src={logo} alt="Logo" />
         </div>
     )
 }
