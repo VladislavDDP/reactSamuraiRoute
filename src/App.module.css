@@ -2,7 +2,7 @@ body {
   background-color: #e3fdfd;
 }
 
-.app-wrapper {
+.app_wrapper {
   margin: 10px 20px;
   display: grid;
   grid-template-rows: 100px 1fr;

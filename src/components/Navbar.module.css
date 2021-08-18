@@ -6,12 +6,17 @@
   border-radius: 0 20px 20px 0;
 }
 
-.nav > div {
+.item {
   margin-bottom: 10px;
   padding: 5px;
 }
 
-.nav > div:hover {
+.item.active {
+  background-color: #f5b3a7;
+  border-radius: 20px;
+}
+
+.item:hover {
   background-color: #8db2b5;
   border-radius: 20px;
 }
