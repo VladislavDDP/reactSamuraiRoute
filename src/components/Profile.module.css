@@ -4,8 +4,23 @@
   background-color: #fff;
   border-radius: 20px 0 0 20px;
   display: grid;
+  gap: 20px;
 }
 
 .profile img {
   width: 45vw;
+  border-radius: 15px;
+  grid-column: 1;
+  grid-row: 2;
+  margin-bottom: 20px;
+}
+
+.profile h3 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.profile_info {
+  grid-column: 2;
+  grid-row: 2;
 }
