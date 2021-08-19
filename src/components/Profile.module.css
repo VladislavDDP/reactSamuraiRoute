@@ -3,6 +3,7 @@
   grid-area: c;
   background-color: #fff;
   border-radius: 20px 0 0 20px;
+  display: grid;
 }
 
 .profile img {
