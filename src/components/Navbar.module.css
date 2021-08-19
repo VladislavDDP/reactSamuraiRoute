@@ -1,6 +1,6 @@
 .nav {
   grid-area: n;
-  background-color: #cbf1f5;
+  background-color: #83c2f5;
   border: 2px solid #fff;
   padding: 15px;
   border-radius: 0 20px 20px 0;
@@ -17,6 +17,6 @@
 }
 
 .item:hover {
-  background-color: #8db2b5;
+  background-color: rgb(91, 133, 172);
   border-radius: 20px;
 }
