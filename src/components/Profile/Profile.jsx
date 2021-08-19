@@ -1,4 +1,5 @@
 import s from './Profile.module.css'
+import MyPosts from './MyPosts/MyPosts'
 
 const Profile = () => {
     return (
@@ -14,6 +15,7 @@ const Profile = () => {
                     <li>Django & Flask</li>
                 </ul>
             </div>
+            <MyPosts />
         </div>
     )
 }
