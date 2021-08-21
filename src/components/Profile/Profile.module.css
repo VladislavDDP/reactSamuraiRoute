@@ -1,7 +1,10 @@
-
+.profile {
+  display: grid;
+  gap: 20px;
+}
 
 .profile_img {
-  width: 45vw;
+  width: 40vw;
   border-radius: 15px;
   grid-column: 1;
   grid-row: 2;
