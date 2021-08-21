@@ -1,13 +1,6 @@
-.profile {
-  padding: 0 20px;
-  grid-area: c;
-  background-color: #fff;
-  border-radius: 20px 0 0 20px;
-  display: grid;
-  gap: 20px;
-}
 
-.profile img {
+
+.profile_img {
   width: 45vw;
   border-radius: 15px;
   grid-column: 1;
@@ -15,7 +8,7 @@
   margin-bottom: 20px;
 }
 
-.profile h3 {
+.profile_h3 {
   grid-column: 1;
   grid-row: 1;
 }
