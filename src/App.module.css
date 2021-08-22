@@ -19,4 +19,7 @@ body {
   grid-area: c;
   background-color: #fff;
   border-radius: 20px 0 0 20px;
+  color: rgb(86, 147, 226);
+  font-size: 1.1rem;
+  font-weight: 600;
 }

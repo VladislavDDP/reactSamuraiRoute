@@ -1,0 +1,24 @@
+.dialogs {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.users {
+    
+}
+
+.user.active {
+    border: 5px solid rgb(210, 230, 99);
+    border-right: none;
+    border-bottom: none;
+    border-radius: 10px;
+}
+
+.messsages {
+
+}
+
+.messsages .messsage {
+
+}

@@ -20,3 +20,27 @@
   grid-column: 2;
   grid-row: 2;
 }
+
+.add_post {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.input_post {
+  height: 30px;
+}
+
+.add_post_btn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: #5bccf6;
+  color: #fff;
+  font-size: .8em;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.add_post_btn:hover {
+  background: #51b6db;
+}
