@@ -1,11 +1,12 @@
 import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts'
+import profile_img from '../../images/profile_default.png'
 
-const Profile = () => {
+const ProfileInfo = (props) => {
     return (
         <div className={s.profile}>
             <h3 className={s.profile_h3}>Profile description</h3>
-            <img className={s.profile_img} alt='profile' src="https://cdn-images-1.medium.com/max/2000/1*qXcjSfRj0C0ir2yMsYiRyw.jpeg" />
+            <img className={s.profile_img} alt='profile' src={profile_img} />
             <div className={s.profile_info}>
                 <h3>Vladyslav Denisovich</h3>
                 <ul>
@@ -15,10 +16,14 @@ const Profile = () => {
                     <li>Django & Flask</li>
                 </ul>
             </div>
-            <div className={s.add_post}>
-                <input className={s.input_post} type='text' placeholder='Type something...'/>
-                <button className={s.add_post_btn}>Add</button>
-            </div>
+        </div>
+    )
+}
+
+const Profile = () => {
+    return (
+        <div>
+            <ProfileInfo />
             <MyPosts />
         </div>
     )

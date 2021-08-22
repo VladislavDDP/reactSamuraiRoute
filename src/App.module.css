@@ -6,7 +6,7 @@ body {
   margin: 10px 20px;
   display: grid;
   grid-template-rows: 100px 1fr 50px;
-  grid-template-columns: 10fr 2fr;
+  grid-template-columns: 8fr 4fr;
   gap: 10px;
   grid-template-areas:
     "h h"
