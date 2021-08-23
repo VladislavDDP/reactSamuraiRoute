@@ -13,6 +13,11 @@
     background-color: rgb(160, 160, 160);
 }
 
+.active {
+    background: rgb(53, 55, 56);
+    color: #fff;
+}
+
 .user a.active {
     background: rgb(53, 55, 56);
     color: #fff;
