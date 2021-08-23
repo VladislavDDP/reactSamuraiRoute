@@ -5,9 +5,9 @@ const Post = (props) => {
         <div className={s.post}>
             <img className={s.post_avatar} src="https://avatars.githubusercontent.com/u/79578649?v=4" alt="avatar" />
             <div>
-                <p>{ props.name }</p>   
-                <p>{ props.text }</p>  
-                <p>{ props.likes_count } like/-s </p>
+                <p className={s.author}>{ props.name }</p>
+                <p className={s.post_text}>{ props.text }</p>  
+                <p className={s.likes}>{ props.likes_count } like/-s </p>
             </div>
         </div>
     )

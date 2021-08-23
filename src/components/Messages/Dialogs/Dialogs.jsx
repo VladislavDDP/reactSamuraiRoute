@@ -5,8 +5,7 @@ const Dialog = (props) => {
     const path = '/messages/' + props.id
     return (
         <div className={s.user}>
-            <img src="https://img.icons8.com/cute-clipart/2x/telegram-app.png" alt="avatar" width='40' height='40'/>
-            <NavLink to={path} activeClassName={s.active}>{props.name}</NavLink>
+            <NavLink to={path} className={s.user} activeClassName={s.active}>{props.name}</NavLink>
         </div>
     )
 }

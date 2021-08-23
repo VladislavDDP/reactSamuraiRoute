@@ -1,18 +1,1 @@
-.profile {
-  display: grid;
-  gap: 20px;
-}
 
-.profile_img {
-  width: 25vw;
-  border-radius: 15px;
-  grid-column: 1;
-  grid-row: 2;
-  margin-bottom: 20px;
-}
-
-
-.profile_info {
-  grid-column: 2;
-  grid-row: 2;
-}

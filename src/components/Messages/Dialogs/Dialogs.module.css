@@ -1,26 +1,42 @@
 .dialogs {
-    margin-top: 10px;
+    margin-top: 20px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 5fr 8fr;
+    gap: 30px;
+    background-color: rgb(243, 241, 241);
 }
 
 .users {
-    
+    grid-row: 1;
+    grid-column: 1;
+    background-color: rgb(160, 160, 160);
 }
 
-.users a {
-    text-decoration: none;
+.user a.active {
+    background: rgb(53, 55, 56);
+    color: #fff;
 }
 
-a.active {
-    background-color: rgb(0, 204, 255);
-    text-decoration: underline;
+.users .user {
+    margin: 5px;
+    padding: 5px;
+    color: rgb(61, 55, 61);
 }
 
 .messsages {
-
+    grid-row: 1;
+    grid-column: 2;
+    background-color: rgb(240, 240, 240);
 }
 
 .messsages .messsage {
+    border: 2px solid rgb(44, 39, 44);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
 
+.messsages .messsage:hover {
+    background: #fff;
 }
