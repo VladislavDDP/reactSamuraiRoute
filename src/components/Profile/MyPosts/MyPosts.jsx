@@ -8,6 +8,9 @@ const MyPosts = () => {
         {name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3},
     ]
 
+    let postsElements = posts
+                    .map(post => (<Post name={post.name} text={post.text} likes_count={post.likes_count}/>))
+
     return (
         <div>
             <div className={s.add_post}>
@@ -15,9 +18,7 @@ const MyPosts = () => {
                 <button className={s.add_post_btn}>Add</button>
             </div>
             <div className={s.posts}>
-                <Post name={posts[0].name} text={posts[0].text} likes_count={posts[0].likes_count} />
-                <Post name={posts[1].name} text={posts[1].text} likes_count={posts[1].likes_count} />
-                <Post name={posts[2].name} text={posts[2].text} likes_count={posts[2].likes_count} />
+                {postsElements}
             </div>
         </div>
     )

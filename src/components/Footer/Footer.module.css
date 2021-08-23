@@ -1,12 +1,9 @@
 .footer {
-  background-color: #082833;
+  background-color: rgb(32, 30, 32);
   grid-area: f;
   border: 2px solid #fff;
-  border-radius: 20px 20px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-weight: 700;
-  font-size: 1.3rem;
 }
