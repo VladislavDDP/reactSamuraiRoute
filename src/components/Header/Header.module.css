@@ -1,8 +1,6 @@
 .header {
   grid-area: h;
   background-color: rgb(32, 30, 32);
-  border: 2px solid #fff;
-
   overflow: hidden;
   display: flex;
   justify-content: center;

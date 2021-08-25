@@ -1,7 +1,6 @@
 .footer {
   background-color: rgb(32, 30, 32);
   grid-area: f;
-  border: 2px solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;
