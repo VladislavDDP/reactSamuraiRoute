@@ -23,4 +23,19 @@ let state = {
     }
 }
 
+export const addNewPost = (text) => {
+    const newPost = {
+        name: 'Vlad', text: text, likes_count: 0
+    }
+    state.profilePage.posts.push(newPost)
+}
+
+export const sendMessage = (text) => {
+    const newMessage = {
+        id: 6, text: text, sender: 0
+    }
+    state.dialogsPage.messages.push(newMessage)
+    console.log(state.dialogsPage.messages)
+}
+
 export default state

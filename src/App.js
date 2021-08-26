@@ -18,9 +18,12 @@ return (
 
         <Route path='/profile' 
                 render={() => <Profile 
-                                posts={props.state.profilePage.posts} />} />
+                                posts={props.state.profilePage.posts} 
+                                addNewPost={props.addNewPost} />} />
         <Route path='/messages' 
-                render={() => <Messages dialogs={props.state.dialogsPage} />} />
+                render={() => <Messages 
+                                dialogs={props.state.dialogsPage}
+                                sendMessage={props.sendMessage} />} />
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />

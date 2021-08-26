@@ -5,7 +5,9 @@ const Messages = (props) => {
     return (
         <div className={s.messages}>
             Your conversations
-            <Dialogs users={props.dialogs.users} messages={props.dialogs.messages} />
+            <Dialogs users={props.dialogs.users} 
+                     messages={props.dialogs.messages}
+                     sendMessage={props.sendMessage} />
         </div>
     )
 }

@@ -13,7 +13,7 @@ const Dialogs = (props) => {
 
     const sendMessage = () => {
         const messageText = sendMessageText.current.value
-        alert(messageText)
+        props.sendMessage(messageText)
     }
     
     return (
