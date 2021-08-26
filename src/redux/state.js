@@ -1,3 +1,5 @@
+import { renderTree } from "../render"
+
 let state = {
     profilePage: {
         posts: [
@@ -28,6 +30,7 @@ export const addNewPost = (text) => {
         name: 'Vlad', text: text, likes_count: 0
     }
     state.profilePage.posts.push(newPost)
+    renderTree(state)
 }
 
 export const sendMessage = (text) => {
@@ -35,7 +38,7 @@ export const sendMessage = (text) => {
         id: 6, text: text, sender: 0
     }
     state.dialogsPage.messages.push(newMessage)
-    console.log(state.dialogsPage.messages)
+    renderTree(state)
 }
 
 export default state

@@ -10,6 +10,7 @@ const MyPosts = (props) => {
     const addPost = () => {
         const text = inputTextPost.current.value
         props.addNewPost(text)
+        inputTextPost.current.value = ''
     }
     
     return (
