@@ -1,30 +1,28 @@
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import state from './redux/state'
-import {functionRegenerator} from './redux/state'
+import store from './redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {addNewPost, sendMessage, updatePostText} from './redux/state'
 import { BrowserRouter } from 'react-router-dom'
 
 const renderTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state} addNewPost={addNewPost}
-             sendMessage={sendMessage} 
-             updatePostText={updatePostText} />
+        <App state={state} addNewPost={store.addNewPost.bind(store)}
+             sendMessage={store.sendMessage.bind(store)} 
+             updatePostText={store.updatePostText.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   )
 }
 
-renderTree(state)
+renderTree(store.state)
 
 // call regenerator as observer pattern
-functionRegenerator(renderTree)
+store.regenerator(renderTree)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

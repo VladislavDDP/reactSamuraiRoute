@@ -6,7 +6,6 @@ const MyPosts = (props) => {
     let posts = props.posts.map(post => (<Post name={post.name} text={post.text} likes_count={post.likes_count}/>))
 
     const inputTextPost = React.createRef()
-
     const updatePostText = () => {
         const text = inputTextPost.current.value 
         props.updatePostText(text)

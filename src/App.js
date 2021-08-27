@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer'
 import { Route } from 'react-router-dom'
 
 const App = (props) => {
+
 return (
     <div className={s.app_wrapper}>
       <Header />
