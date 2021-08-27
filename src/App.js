@@ -19,7 +19,9 @@ return (
         <Route path='/profile' 
                 render={() => <Profile 
                                 posts={props.state.profilePage.posts} 
-                                addNewPost={props.addNewPost} />} />
+                                newPostText={props.state.profilePage.newPostText} 
+                                addNewPost={props.addNewPost} 
+                                updatePostText={props.updatePostText} />} />
         <Route path='/messages' 
                 render={() => <Messages 
                                 dialogs={props.state.dialogsPage}

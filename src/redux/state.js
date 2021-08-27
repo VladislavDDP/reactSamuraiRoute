@@ -6,13 +6,15 @@ let state = {
             {name: 'Vlad', text: 'Hello world', likes_count: 4},
             {name: 'Vlad', text: 'Let`s speak about react?', likes_count: 1},
             {name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3},
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         users: [
             {id: 1,name: 'Vlad'},
-            {id: 2,name: 'Victor'},
-            {id: 3,name:'Maks'}
+            {id: 2,name: 'Kate'},
+            {id: 3,name: 'Victor'},
+            {id: 4,name:'Maks'}
         ],
           
         messages: [
@@ -25,11 +27,17 @@ let state = {
     }
 }
 
-export const addNewPost = (text) => {
+export const addNewPost = () => {
     const newPost = {
-        name: 'Vlad', text: text, likes_count: 0
+        name: 'Vlad', text: state.profilePage.newPostText, likes_count: 0
     }
-    state.profilePage.posts.push(newPost)
+    state.profilePage.posts.push(newPost)  
+    state.profilePage.newPostText = ''
+    renderTree(state)
+}
+
+export const updatePostText = (text) => {
+    state.profilePage.newPostText = text
     renderTree(state)
 }
 

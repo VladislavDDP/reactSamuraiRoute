@@ -7,16 +7,23 @@ const MyPosts = (props) => {
 
     const inputTextPost = React.createRef()
 
-    const addPost = () => {
-        const text = inputTextPost.current.value
-        props.addNewPost(text)
-        inputTextPost.current.value = ''
+    const updatePostText = () => {
+        const text = inputTextPost.current.value 
+        props.updatePostText(text)
     }
     
+    const addPost = () => {
+        props.addNewPost()
+    }
+
     return (
         <div>
             <div className={s.add_post}>
-                <input ref={inputTextPost} className={s.input_post} type='text' placeholder='Type something...'/>
+                <input ref={inputTextPost} 
+                       onChange={updatePostText}
+                       value={props.newPostText} 
+                       className={s.input_post} 
+                       type='text' placeholder='Type something...'/>
                 <button onClick={addPost} className={s.add_post_btn}>Add</button>
             </div>
             <div className={s.posts}>
