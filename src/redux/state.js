@@ -1,4 +1,4 @@
-import { renderTree } from "../render"
+let renderTree = () => {}
 
 let state = {
     profilePage: {
@@ -47,6 +47,11 @@ export const sendMessage = (text) => {
     }
     state.dialogsPage.messages.push(newMessage)
     renderTree(state)
+}
+
+// observer pattern
+export const functionRegenerator = (observer) => {
+    renderTree = observer
 }
 
 export default state
