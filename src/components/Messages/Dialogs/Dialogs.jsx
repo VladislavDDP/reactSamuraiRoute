@@ -16,6 +16,11 @@ const Dialogs = (props) => {
         props.dispatch({type: 'SEND-MESSAGE', text: messageText})
         sendMessageText.current.value = ''
     }
+
+    const updateMessageText = () => {
+        const text = sendMessageText.current.value
+        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', text: text})
+    }
     
     return (
         <div className={s.dialogs}>
@@ -27,7 +32,7 @@ const Dialogs = (props) => {
             </div>
 
             <div className={s.send_message}>
-                <textarea className={s.messageTextarea} ref={sendMessageText} placeholder='Type message...' name="" rows="1"></textarea>
+                <textarea className={s.messageTextarea} onChange={updateMessageText} value={props.newMessageText} ref={sendMessageText} placeholder='Type message...' name="" rows="1"></textarea>
                 <button className={s.send_message_btn} onClick={sendMessage}>&gt;</button>
             </div>
         </div>

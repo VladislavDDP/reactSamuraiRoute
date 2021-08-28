@@ -7,6 +7,7 @@ const Messages = (props) => {
             Your conversations
             <Dialogs users={props.dialogs.users} 
                      messages={props.dialogs.messages}
+                     newMessageText={props.dialogs.newMessageText}
                      dispatch={props.dispatch} />
         </div>
     )

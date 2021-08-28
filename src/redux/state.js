@@ -22,7 +22,8 @@ const store = {
                 {id: 3, text: 'Fine', sender: 0},
                 {id: 4, text: 'what happens?', sender: 0},
                 {id: 5, text: 'just tired a little bit', sender: 1}
-            ]
+            ],
+            newMessageText: ''
         }
     },
     _renderTree() {},
@@ -37,7 +38,6 @@ const store = {
     },
 
     dispatch(action) { // action = {type: str, param: any}
-        debugger
         if (action.type === 'ADD-NEW-POST') {
             const newPost = {
                 name: 'Vlad', text: this.state.profilePage.newPostText, likes_count: 0
@@ -47,6 +47,9 @@ const store = {
             this._renderTree(this._state)
         } else if (action.type === 'UPDATE-POST-TEXT') {
             this._state.profilePage.newPostText = action.text
+            this._renderTree(this._state)
+        } else if(action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.text
             this._renderTree(this._state)
         } else if (action.type === 'SEND-MESSAGE') {
             const newMessage = {
