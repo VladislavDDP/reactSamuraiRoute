@@ -25,35 +25,36 @@ const store = {
             ]
         }
     },
-    renderTree() {},
-    addNewPost() {
-        const newPost = {
-            name: 'Vlad', text: this.state.profilePage.newPostText, likes_count: 0
-        }
-        this._state.profilePage.posts.push(newPost)  
-        this._state.profilePage.newPostText = ''
-        this.renderTree(this._state)
-    },
+    _renderTree() {},
+
 
     get state() {
         return this._state
     },
 
-    updatePostText(text) {
-        this._state.profilePage.newPostText = text
-        this.renderTree(this._state)
-    },
-    
-    sendMessage(text) {
-        const newMessage = {
-            id: 6, text: text, sender: 0
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this.renderTree(this._state)
+    regenerator(observer) {
+        this._renderTree = observer
     },
 
-    regenerator(observer) {
-        this.renderTree = observer
+    dispatch(action) { // action = {type: str, param: any}
+        debugger
+        if (action.type === 'ADD-NEW-POST') {
+            const newPost = {
+                name: 'Vlad', text: this.state.profilePage.newPostText, likes_count: 0
+            }
+            this._state.profilePage.posts.push(newPost)  
+            this._state.profilePage.newPostText = ''
+            this._renderTree(this._state)
+        } else if (action.type === 'UPDATE-POST-TEXT') {
+            this._state.profilePage.newPostText = action.text
+            this._renderTree(this._state)
+        } else if (action.type === 'SEND-MESSAGE') {
+            const newMessage = {
+                id: 6, text: action.text, sender: 0
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._renderTree(this._state)
+        }
     }
 }
 

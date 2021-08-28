@@ -21,12 +21,11 @@ return (
                 render={() => <Profile 
                                 posts={props.state.profilePage.posts} 
                                 newPostText={props.state.profilePage.newPostText} 
-                                addNewPost={props.addNewPost} 
-                                updatePostText={props.updatePostText} />} />
+                                dispatch={props.dispatch} />} />
         <Route path='/messages' 
                 render={() => <Messages 
                                 dialogs={props.state.dialogsPage}
-                                sendMessage={props.sendMessage} />} />
+                                dispatch={props.dispatch} />} />
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />
