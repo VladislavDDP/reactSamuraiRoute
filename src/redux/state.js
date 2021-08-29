@@ -1,3 +1,20 @@
+// constant vars for profile page
+const ADD_NEW_POST = 'ADD-NEW-POST'
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
+
+// constant vars for dialogs page
+const SEND_MESSAGE = 'SEND-MESSAGE'
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+
+// action creators for profile page
+export const addNewPostActionCreator = () => ({type: ADD_NEW_POST})
+export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, text: text})
+
+// action creators for dialogs page
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
+export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MESSAGE_TEXT, text: text})
+
+// bussiness object for processing user`s data
 const store = {
     _state: {
         profilePage: {
@@ -33,31 +50,34 @@ const store = {
         return this._state
     },
 
+    // observer pattern
     regenerator(observer) {
         this._renderTree = observer
     },
 
+    // method for updating posts on profile page and sending messages on dialogs page
     dispatch(action) { // action = {type: str, param: any}
-        if (action.type === 'ADD-NEW-POST') {
+        if (action.type === ADD_NEW_POST) {
             const newPost = {
                 name: 'Vlad', text: this.state.profilePage.newPostText, likes_count: 0
             }
-            this._state.profilePage.posts.push(newPost)  
+            this._state.profilePage.posts.unshift(newPost)  
             this._state.profilePage.newPostText = ''
             this._renderTree(this._state)
-        } else if (action.type === 'UPDATE-POST-TEXT') {
+        } else if (action.type === UPDATE_POST_TEXT) {
             this._state.profilePage.newPostText = action.text
             this._renderTree(this._state)
-        } else if(action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.text
-            this._renderTree(this._state)
-        } else if (action.type === 'SEND-MESSAGE') {
+        } else if (action.type === SEND_MESSAGE) {
             const newMessage = {
-                id: 6, text: action.text, sender: 0
+                id: 6, text: this._state.dialogsPage.newMessageText, sender: 0
             }
             this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText = ''
             this._renderTree(this._state)
-        }
+        } else if(action.type === UPDATE_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.text
+            this._renderTree(this._state)
+        } 
     }
 }
 
