@@ -7,10 +7,12 @@
   grid-column: 1;
   grid-row: 3;
   margin: 20px 0;
+  width: 100%;
 }
 
 .input_post {
   height: 30px;
+  width: 80%;
 }
 
 .add_post_btn {
