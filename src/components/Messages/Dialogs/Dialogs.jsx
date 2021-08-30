@@ -2,7 +2,7 @@ import s from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
 import React from 'react'
-import { sendMessageActionCreator, updateMessageTextActionCreator } from '../../../redux/state'
+import { sendMessageActionCreator, updateMessageTextActionCreator } from '../../../redux/dialogsReducer'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
