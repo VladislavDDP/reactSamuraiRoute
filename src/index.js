@@ -1,26 +1,30 @@
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import store from './redux/state'
+import store from './redux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 
 const renderTree = (state) => {
+  debugger
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state} dispatch={store.dispatch.bind(store)} />
+        <App state={state} store={store} dispatch={store.dispatch.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   )
 }
 
-renderTree(store.state)
+renderTree(store.getState())
 
 // call regenerator as observer pattern
-store.regenerator(renderTree)
+store.subscribe(() => {
+  const state = store.getState()
+  renderTree(state)
+})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

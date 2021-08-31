@@ -38,7 +38,7 @@ const store = {
     },
 
     // observer pattern
-    regenerator(observer) {
+    subscribe(observer) {
         this._renderTree = observer
     },
 

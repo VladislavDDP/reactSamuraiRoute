@@ -10,30 +10,28 @@ import Footer from './components/Footer/Footer'
 import { Route } from 'react-router-dom'
 
 const App = (props) => {
+  return (
+      <div className={s.app_wrapper}>
+        <Header />
+        <Navbar />
+        <div className={s.content}>
 
-return (
-    <div className={s.app_wrapper}>
-      <Header />
-      <Navbar />
-      <div className={s.content}>
+          <Route path='/profile' 
+                  render={() => <Profile 
+                                  profilePage={props.state.profilePage}
+                                  dispatch={props.dispatch} />} />
+          <Route path='/messages' 
+                  render={() => <Messages 
+                                  dialogsPage={props.state.dialogsPage}
+                                  dispatch={props.dispatch} />} />
+          <Route path='/news' component={News} />
+          <Route path='/music' component={Music} />
+          <Route path='/settings' component={Settings} />
 
-        <Route path='/profile' 
-                render={() => <Profile 
-                                posts={props.state.profilePage.posts} 
-                                newPostText={props.state.profilePage.newPostText} 
-                                dispatch={props.dispatch} />} />
-        <Route path='/messages' 
-                render={() => <Messages 
-                                dialogs={props.state.dialogsPage}
-                                dispatch={props.dispatch} />} />
-        <Route path='/news' component={News} />
-        <Route path='/music' component={Music} />
-        <Route path='/settings' component={Settings} />
-
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  )
+    )
 }
 
 export default App
