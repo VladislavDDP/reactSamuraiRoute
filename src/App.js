@@ -17,13 +17,9 @@ const App = (props) => {
         <div className={s.content}>
 
           <Route path='/profile' 
-                  render={() => <Profile 
-                                  profilePage={props.state.profilePage}
-                                  dispatch={props.dispatch} />} />
+                  render={() => <Profile store={props.store} />} />
           <Route path='/messages' 
-                  render={() => <Messages 
-                                  dialogsPage={props.state.dialogsPage}
-                                  dispatch={props.dispatch} />} />
+                  render={() => <Messages store={props.store} />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />

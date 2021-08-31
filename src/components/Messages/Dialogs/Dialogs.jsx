@@ -2,7 +2,6 @@ import s from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
 import React from 'react'
-import { sendMessageActionCreator, updateMessageTextActionCreator } from '../../../redux/dialogsReducer'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
@@ -11,12 +10,12 @@ const Dialogs = (props) => {
                     <Message text={message.text} sender={message.sender} />))
 
     const sendMessage = () => {
-        props.dispatch(sendMessageActionCreator())
+        props.sendMessage()
     }
 
     const updateMessageText = (event) => {
         const text = event.target.value
-        props.dispatch(updateMessageTextActionCreator(text))
+        props.updateMessageText(text)
     }
     
     return (
@@ -24,7 +23,6 @@ const Dialogs = (props) => {
             <div className={s.users}>
                 {users}
             </div>
-            {/* <Route path={`/messages/${users.target.id}`} component={userChat} /> */}
 
             <div className={s.messsages}>
                 {messages}
