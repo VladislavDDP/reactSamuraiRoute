@@ -5,14 +5,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
-import { Provider } from './StoreContext'
+import { Provider } from 'react-redux'
 
-const renderTree = (state) => {
-  debugger
+const renderTree = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <Provider value={store}>
+        <Provider store={store}>
           <App />
         </Provider> 
       </BrowserRouter>
@@ -21,12 +20,11 @@ const renderTree = (state) => {
   )
 }
 
-renderTree(store.getState())
+renderTree()
 
 // call regenerator as observer pattern
 store.subscribe(() => {
-  const state = store.getState()
-  renderTree(state)
+  renderTree()
 })
 
 // If you want to start measuring performance in your app, pass a function
