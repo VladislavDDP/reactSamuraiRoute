@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer'
 import { Route } from 'react-router-dom'
 
 const App = (props) => {
+  debugger
   return (
       <div className={s.app_wrapper}>
         <Header />
@@ -17,9 +18,9 @@ const App = (props) => {
         <div className={s.content}>
 
           <Route path='/profile' 
-                  render={() => <Profile store={props.store} />} />
+                  render={() => <Profile />} />
           <Route path='/messages' 
-                  render={() => <Messages store={props.store} />} />
+                  render={() => <Messages />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />
