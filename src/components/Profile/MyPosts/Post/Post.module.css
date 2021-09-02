@@ -25,5 +25,6 @@
 
 .likes {
   font-style: italic;
+  width: 30px;
   cursor: pointer;
 }
