@@ -29,6 +29,7 @@ const profileReducer = (state=initialState, action) => {
             copyState.posts = [...state.posts]
             copyState.newPostText = action.text
             return copyState
+            
         case LIKE_POST:
             copyState = {...state}
             state.posts[action.index].likes_count++

@@ -1,6 +1,6 @@
 .posts {
-  grid-column: 1;
   grid-row: 4;
+  grid-column: 1;
 }
 
 .add_post {
