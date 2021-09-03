@@ -10,9 +10,16 @@ const ProfileInfo = (props) => {
                 <hr />
                 <ul>
                     <li>Work: web developer</li>
+                    <li>Alternative: python repetitor</li>
                     <li>Study: university</li>
                     <li>Age: 19</li>
                     <li>City: Kyiv</li>
+                </ul>
+                <hr />
+                <ul>
+                    <li>Experience: 2 years</li>
+                    <li>Langusage: english</li>
+                    <li>GitHub: true</li>
                 </ul>
             </div>
         </div>
