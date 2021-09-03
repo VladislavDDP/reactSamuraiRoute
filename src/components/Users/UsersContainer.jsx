@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         followUser: (userId) => {
-            debugger
             dispatch(followUserActionCreator(userId))
         },
 
