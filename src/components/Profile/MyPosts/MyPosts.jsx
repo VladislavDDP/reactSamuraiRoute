@@ -8,7 +8,11 @@ const MyPosts = (props) => {
         props.likePost(index)
     }
 
-    let posts = props.posts.map((post, index) => (<Post name={post.name} likePost={likePost} index={index} text={post.text} likes_count={post.likes_count}/>))
+    let posts = props.posts.map((post, index) => (<Post key={post.id}
+                                                        name={post.name} 
+                                                        likePost={likePost} 
+                                                        index={index} text={post.text} 
+                                                        likes_count={post.likes_count}/>))
 
     const updatePostText = (event) => {
         const text = event.target.value 

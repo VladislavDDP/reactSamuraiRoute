@@ -4,18 +4,19 @@ const LIKE_POST = 'LIKE-POST'
 
 const initialState = {
     posts: [
-        {name: 'Vlad', text: 'How are you doing?', likes_count: 4},
-        {name: 'Vlad', text: 'Let`s speak about react?', likes_count: 1},
-        {name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3},
+        {id: 3, name: 'Vlad', text: 'How are you doing?', likes_count: 4, liked: false},
+        {id: 2, name: 'Vlad', text: 'Let`s speak about react?', likes_count: 1, liked: false},
+        {id: 1, name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3, liked: false},
     ],
     newPostText: ''
 }
 
 const profileReducer = (state=initialState, action) => {
+    
     switch(action.type) {
         case ADD_NEW_POST:
             const newPost = {
-                name: 'Vlad', text: state.newPostText, likes_count: 0
+                id: state.posts[0].id + 1, name: 'Vlad', text: state.newPostText, likes_count: 0
             }
             return {
                 ...state,
@@ -30,10 +31,16 @@ const profileReducer = (state=initialState, action) => {
             }
             
         case LIKE_POST: 
-            let copyState = {...state}
-            copyState.posts = [...state.posts]
-            copyState.posts[action.index].likes_count++
-            return copyState
+            return {
+                ...state,
+                posts: state.posts.map((post, index) => {
+                    if (index === action.index) {
+                        if (!post.liked) return {...post, likes_count: ++post.likes_count, liked: true}
+                        else return {...post, likes_count: --post.likes_count, liked: false}
+                    }
+                    return post
+                })
+            }
         default:
             return state
     }

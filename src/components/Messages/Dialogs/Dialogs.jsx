@@ -5,9 +5,9 @@ import React from 'react'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
-                    <Dialog id={user.id} name={user.name} />))
+                    <Dialog key={user.id} id={user.id} name={user.name} />))
     let messages = props.messages.map(message => (
-                    <Message text={message.text} sender={message.sender} />))
+                    <Message key={message.id} text={message.text} sender={message.sender} />))
 
     const sendMessage = () => {
         props.sendMessage()

@@ -8,6 +8,7 @@ import Music from './components/Navbar/Music/Music'
 import Settings from './components/Navbar/Settings/Settings'
 import Footer from './components/Footer/Footer'
 import { Route } from 'react-router-dom'
+import UsersContainer from './components/Users/UsersContainer'
 
 const App = (props) => {
   return (
@@ -20,6 +21,8 @@ const App = (props) => {
                   render={() => <Profile />} />
           <Route path='/messages' 
                   render={() => <Messages />} />
+          <Route path='/users' 
+                  render={() => <UsersContainer />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />
