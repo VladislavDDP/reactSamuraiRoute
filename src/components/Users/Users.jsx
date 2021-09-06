@@ -2,19 +2,12 @@ import s from './Users.module.css'
 import * as axios from 'axios'
 
 const Users = (props) => {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => console.log(response.data))
+    
     if (props.users.length === 0) {
-        props.setUsers([
-                {id: 1, imageUrl: 'https://cdn.mos.cms.futurecdn.net/wmyMhE8TuJnBRVW7D5sJVn-1200-80.jpg',
-                    name: 'Kate', status: 'Like beautiful bags', location: {country: 'Ukraine', city: 'Kyiv'}, followed: false},
-                {id: 2, imageUrl: 'https://cdn.mos.cms.futurecdn.net/wmyMhE8TuJnBRVW7D5sJVn-1200-80.jpg',
-                    name: 'Nikita', status: 'Study a lot', location: {country: 'Ukraine', city: 'Kyiv'}, followed: true},
-                {id: 3, imageUrl: 'https://cdn.mos.cms.futurecdn.net/wmyMhE8TuJnBRVW7D5sJVn-1200-80.jpg',
-                    name: 'Oleg', status: 'Ecology is important thing', location: {country: 'Ukraine', city: 'Kyiv'}, followed: false},
-                {id: 4, imageUrl: 'https://cdn.mos.cms.futurecdn.net/wmyMhE8TuJnBRVW7D5sJVn-1200-80.jpg',
-                    name: 'Nazar', status: 'Python is cool', location: {country: 'Ukraine', city: 'Kyiv'}, followed: false},
-            ]
-        )
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            console.log(response.data.items) 
+            props.setUsers(response.data.items)
+        })
     }
     
     return (
@@ -22,11 +15,11 @@ const Users = (props) => {
             {
                 props.users.map(u => { 
                     return <div key={u.id}>
-                        <img src={u.imageUrl} className={s.profilePhoto} alt="" />
+                        <img src={u.photos.small != null ? u.photos.small : 'https://pickaface.net/gallery/avatar/unr_random_160817_0304_2mvqp69.png'} className={s.profilePhoto} alt="" />
                         <div>{u.name}</div>
                         <div>{u.status}</div>
-                        <div>{u.location.city}</div>
-                        <div>{u.location.country}</div>
+                        <div>{"u.location.city"}</div>
+                        <div>{"u.location.country"}</div>
 
                         {u.followed
                             ? <button onClick={() => {props.unfollowUser(u.id)} }>Unfollow</button> 
