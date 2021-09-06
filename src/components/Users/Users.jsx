@@ -1,7 +1,8 @@
 import s from './Users.module.css'
+import * as axios from 'axios'
 
 const Users = (props) => {
-
+    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => console.log(response.data))
     if (props.users.length === 0) {
         props.setUsers([
                 {id: 1, imageUrl: 'https://cdn.mos.cms.futurecdn.net/wmyMhE8TuJnBRVW7D5sJVn-1200-80.jpg',
