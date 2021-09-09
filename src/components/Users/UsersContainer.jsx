@@ -1,40 +1,88 @@
 import { connect } from "react-redux"
+import * as axios from 'axios'
+import React from 'react'
 import Users from "./Users"
-import {followUserActionCreator, unfollowUserActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalPagesCountActionCreator} from './../../redux/usersReducer';
+import {followUserAC, unfollowUserAC, setUsersAC, setCurrentPageAC, setTotalPagesCountAC, setIsFetchingAC} from './../../redux/usersReducer';
+
+class UsersContainer extends React.Component {
+    componentDidMount() {
+        this.props.setIsFetching(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+             .then(response => {
+                 this.props.setIsFetching(false)
+                 this.props.setUsers(response.data.items)
+                })
+    }
+
+    setPage = (page) => {
+        this.props.setCurrentPage(page)
+        this.props.setIsFetching(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+             .then(response => {
+                 this.props.setIsFetching(false)
+                 this.props.setUsers(response.data.items)
+                 this.props.setTotalPagesCount(response.data.totalCount > 1000? 80 : 50)
+             })
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    {this.props.isFetching ? <div style={ {backgroundColor: 'black'} }>loader</div> : null}
+                </div>
+
+                <Users  totalPagesCount={this.props.totalPagesCount}
+                    users={this.props.users}
+                    pageSize={this.props.pageSize}
+                    isFetching={this.props.isFetching}
+                    currentPage={this.props.currentPage}
+                    unfollowUser={this.props.unfollowUser}
+                    followUser={this.props.followUser}
+                    setPage={this.setPage}  />   
+            </div>
+        )
+
+            
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         currentPage: state.usersPage.currentPage,
         totalPagesCount: state.usersPage.totalPagesCount,
-        pageSize: state.usersPage.pageSize
+        pageSize: state.usersPage.pageSize,
+        isFetching: state.usersPage.isFetching
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         followUser: (userId) => {
-            dispatch(followUserActionCreator(userId))
+            dispatch(followUserAC(userId))
         },
 
         unfollowUser: (userId) => {
-            dispatch(unfollowUserActionCreator(userId))
+            dispatch(unfollowUserAC(userId))
         },
 
         setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
+            dispatch(setUsersAC(users))
         },
 
         setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageActionCreator(currentPage))
+            dispatch(setCurrentPageAC(currentPage))
         },
 
         setTotalPagesCount: (totalPagesCount) => {
-            dispatch(setTotalPagesCountActionCreator(totalPagesCount))
+            dispatch(setTotalPagesCountAC(totalPagesCount))
+        },
+
+        setIsFetching: (isFetching) => {
+            dispatch(setIsFetchingAC(isFetching))
         }
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
-
-export default UsersContainer
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
