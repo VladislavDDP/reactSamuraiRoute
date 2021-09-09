@@ -1,4 +1,5 @@
 import s from './Users.module.css'
+import avatar from "../../images/default_avatar.png"
 
 const Users = (props) => {
     const pagesNumbers = []
@@ -9,17 +10,18 @@ const Users = (props) => {
 
     return (
         <div>
-
+            <div>
                 {
                     pagesNumbers.map(page => {
                         return <span key={page} className={props.currentPage === page && s.selectedPage}  
                                         onClick={() => props.setPage(page)}>{page}</span>
                     })
                 }
+            </div>
             {
                 props.users.map(u => { 
                     return <div key={u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : 'https://pickaface.net/gallery/avatar/unr_random_160817_0304_2mvqp69.png'} className={s.profilePhoto} alt="" />
+                        <img src={u.photos.small != null ? u.photos.small : avatar} className={s.profilePhoto} alt="" />
                         <div>{u.name}</div>
                         <div>{u.status}</div>
                         <div>{"u.location.city"}</div>

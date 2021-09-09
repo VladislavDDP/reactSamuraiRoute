@@ -74,6 +74,6 @@ export const unfollowUserAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_STATE, users})
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalPagesCountAC = (totalPagesCount) => ({type: SET_TOTAL_PAGES_COUNT, totalPagesCount})
-export const setIsFetchingAC = (totalPagesCount) => ({type: SET_TOTAL_PAGES_COUNT, totalPagesCount})
+export const setIsFetchingAC = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
 
 export default usersReducer

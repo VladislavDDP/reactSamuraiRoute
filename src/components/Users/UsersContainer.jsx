@@ -2,6 +2,8 @@ import { connect } from "react-redux"
 import * as axios from 'axios'
 import React from 'react'
 import Users from "./Users"
+import s from "./Users.module.css"
+import preloader from "../../images/preloader.gif"
 import {followUserAC, unfollowUserAC, setUsersAC, setCurrentPageAC, setTotalPagesCountAC, setIsFetchingAC} from './../../redux/usersReducer';
 
 class UsersContainer extends React.Component {
@@ -9,9 +11,9 @@ class UsersContainer extends React.Component {
         this.props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
              .then(response => {
-                 this.props.setIsFetching(false)
-                 this.props.setUsers(response.data.items)
-                })
+                this.props.setUsers(response.data.items)
+                this.props.setIsFetching(false)
+             })
     }
 
     setPage = (page) => {
@@ -19,9 +21,9 @@ class UsersContainer extends React.Component {
         this.props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
              .then(response => {
-                 this.props.setIsFetching(false)
-                 this.props.setUsers(response.data.items)
-                 this.props.setTotalPagesCount(response.data.totalCount > 1000? 80 : 50)
+                this.props.setUsers(response.data.items)
+                this.props.setTotalPagesCount(response.data.totalCount > 1000? 80 : 50)
+                this.props.setIsFetching(false)
              })
     }
 
@@ -29,7 +31,7 @@ class UsersContainer extends React.Component {
         return (
             <div>
                 <div>
-                    {this.props.isFetching ? <div style={ {backgroundColor: 'black'} }>loader</div> : null}
+                    {this.props.isFetching ? <img className={s.preloader} src={preloader} alt="preloader"/> : null }
                 </div>
 
                 <Users  totalPagesCount={this.props.totalPagesCount}
