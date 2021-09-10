@@ -5,7 +5,7 @@ import React from 'react'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
-                    <Dialog key={user.id} id={user.id} name={user.name} />))
+                    <Dialog key={user.id} id={user.id} name={user.name} setActiveChatWithUser={props.setActiveChatWithUser} isActive={user.isActive} />))
     let messages = props.messages.map(message => (
                     <Message key={message.id} text={message.text} sender={message.sender} />))
 

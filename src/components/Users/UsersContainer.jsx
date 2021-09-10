@@ -4,7 +4,7 @@ import React from 'react'
 import Users from "./Users"
 import s from "./Users.module.css"
 import preloader from "../../images/preloader.gif"
-import {followUserAC, unfollowUserAC, setUsersAC, setCurrentPageAC, setTotalPagesCountAC, setIsFetchingAC} from './../../redux/usersReducer';
+import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching} from './../../redux/usersReducer';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -59,32 +59,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        followUser: (userId) => {
-            dispatch(followUserAC(userId))
-        },
-
-        unfollowUser: (userId) => {
-            dispatch(unfollowUserAC(userId))
-        },
-
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-
-        setTotalPagesCount: (totalPagesCount) => {
-            dispatch(setTotalPagesCountAC(totalPagesCount))
-        },
-
-        setIsFetching: (isFetching) => {
-            dispatch(setIsFetchingAC(isFetching))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    followUser,
+    unfollowUser,
+    setUsers,
+    setCurrentPage,
+    setTotalPagesCount,
+    setIsFetching
+})(UsersContainer)

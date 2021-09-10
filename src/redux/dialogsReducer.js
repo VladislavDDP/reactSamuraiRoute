@@ -1,12 +1,13 @@
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
+const SET_ACTIVE_CHAT_WITH_USER = 'SET_ACTIVE_CHAT_WITH_USER'
 
 const initialState = {
     users: [
-        {id: 1,name: 'Vlad'},
-        {id: 2,name: 'Kate'},
-        {id: 3,name: 'Victor'},
-        {id: 4,name:'Maks'}
+        {id: 1, name: 'Vlad', isActive: true},
+        {id: 2, name: 'Kate', isActive: false},
+        {id: 3, name: 'Victor', isActive: false},
+        {id: 4, name:'Maks', isActive: false}
     ],
         
     messages: [
@@ -35,6 +36,19 @@ const dialogsReducer = (state=initialState, action) => {
                 ...state,
                 newMessageText: action.text
             }
+
+        case SET_ACTIVE_CHAT_WITH_USER:
+            return {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === action.id) {
+                        user.isActive = true
+                        return user
+                    }
+                    user.isActive = false
+                    return user
+                })
+            }
         default:
             return state
     }
@@ -43,5 +57,6 @@ const dialogsReducer = (state=initialState, action) => {
 // action creators for dialogs page
 export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
 export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MESSAGE_TEXT, text: text})
+export const setActiveChatWithUserActionCreator = (id) => ({type: SET_ACTIVE_CHAT_WITH_USER, id})
 
 export default dialogsReducer
