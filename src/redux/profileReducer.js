@@ -1,6 +1,7 @@
-const ADD_NEW_POST = 'ADD-NEW-POST'
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
-const LIKE_POST = 'LIKE-POST'
+const ADD_NEW_POST = 'ADD_NEW_POST'
+const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
+const LIKE_POST = 'LIKE_POST'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 const initialState = {
     posts: [
@@ -8,7 +9,8 @@ const initialState = {
         {id: 2, name: 'Vlad', text: 'Let`s speak about react?', likes_count: 1, liked: false},
         {id: 1, name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3, liked: false},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 const profileReducer = (state=initialState, action) => {
@@ -41,6 +43,12 @@ const profileReducer = (state=initialState, action) => {
                     return post
                 })
             }
+
+        case SET_USER_PROFILE: 
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state
     }
@@ -48,7 +56,8 @@ const profileReducer = (state=initialState, action) => {
 
 // action creators for profile page
 export const addNewPost = () => ({type: ADD_NEW_POST})
-export const updatePostText = (text) => ({type: UPDATE_POST_TEXT, text: text})
-export const likePost = (index) => ({type: LIKE_POST, index: index})
+export const updatePostText = (text) => ({type: UPDATE_POST_TEXT, text})
+export const likePost = (index) => ({type: LIKE_POST, index})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer

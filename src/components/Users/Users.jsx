@@ -1,5 +1,6 @@
 import s from './Users.module.css'
 import avatar from "../../images/default_avatar.png"
+import { NavLink } from 'react-router-dom'
 
 const Users = (props) => {
     const pagesNumbers = []
@@ -21,7 +22,9 @@ const Users = (props) => {
             {
                 props.users.map(u => { 
                     return <div key={u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : avatar} className={s.profilePhoto} alt="" />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : avatar} className={s.profilePhoto} alt="" />
+                        </NavLink>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
                         <div>{"u.location.city"}</div>

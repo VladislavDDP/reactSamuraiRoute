@@ -1,25 +1,27 @@
 import s from './ProfileInfo.module.css'
-import profile_img from '../../../images/profile_default.png'
+// import profile_img from '../../../images/profile_default.png'
+import Preloader from '../../Users/Preloader'
 
 const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
+
     return (
         <div className={s.profile}>
-            <img className={s.profile_img} alt='profile' src={profile_img} />
+            {/* <img className={s.profile_img} alt='profile' src={profile_img} /> */}
+            <img src={props.profile.photos.large} className={s.profile_img} alt="profile_image" />
             <div className={s.profile_info}>
-                <h3>Vladyslav Denisovich</h3>
+                <h2>{props.profile.fullName}</h2>
+                <h3>{props.profile.aboutMe}</h3>
                 <hr />
                 <ul>
-                    <li>Work: web developer</li>
-                    <li>Alternative: python repetitor</li>
-                    <li>Study: university</li>
-                    <li>Age: 19</li>
-                    <li>City: Kyiv</li>
+                    <li>Work: {props.profile.lookingForAJobDescription}</li>
                 </ul>
                 <hr />
                 <ul>
-                    <li>Experience: 2 years</li>
-                    <li>Langusage: english</li>
-                    <li>GitHub: true</li>
+                    <li>Instagram: {props.profile.contacts.instagram}</li>
+                    <li>GitHub: {props.profile.contacts.github}</li>
                 </ul>
             </div>
         </div>
