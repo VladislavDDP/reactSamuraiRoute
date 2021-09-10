@@ -55,8 +55,8 @@ const dialogsReducer = (state=initialState, action) => {
 }
 
 // action creators for dialogs page
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
-export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MESSAGE_TEXT, text: text})
-export const setActiveChatWithUserActionCreator = (id) => ({type: SET_ACTIVE_CHAT_WITH_USER, id})
+export const sendMessage = () => ({type: SEND_MESSAGE})
+export const updateMessageText = (text) => ({type: UPDATE_MESSAGE_TEXT, text: text})
+export const setActiveChatWithUser = (id) => ({type: SET_ACTIVE_CHAT_WITH_USER, id})
 
 export default dialogsReducer

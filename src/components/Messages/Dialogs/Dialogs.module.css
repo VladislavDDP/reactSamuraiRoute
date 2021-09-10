@@ -34,6 +34,8 @@
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column: 2;
+    height:400px;
+    overflow:auto;
     background-color: rgb(240, 240, 240);
 }
 

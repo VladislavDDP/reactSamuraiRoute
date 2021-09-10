@@ -2,8 +2,7 @@ import { connect } from "react-redux"
 import * as axios from 'axios'
 import React from 'react'
 import Users from "./Users"
-import s from "./Users.module.css"
-import preloader from "../../images/preloader.gif"
+import Preloader from './Preloader'
 import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching} from './../../redux/usersReducer';
 
 class UsersContainer extends React.Component {
@@ -30,9 +29,9 @@ class UsersContainer extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    {this.props.isFetching ? <img className={s.preloader} src={preloader} alt="preloader"/> : null }
-                </div>
+                
+                {this.props.isFetching ? <Preloader /> : null }
+                
 
                 <Users  totalPagesCount={this.props.totalPagesCount}
                     users={this.props.users}

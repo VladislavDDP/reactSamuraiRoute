@@ -4,7 +4,7 @@
 }
 
 .selectedPage {
-    border: 1px solid rgb(255, 105, 180);
+    background: rgb(255, 105, 180);
 }
 
 .preloader {
@@ -22,5 +22,5 @@ span {
 }
 
 span:hover {
-    background: rgb(252, 125, 189);
+    background: rgb(255, 160, 207);
 }

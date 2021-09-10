@@ -47,8 +47,8 @@ const profileReducer = (state=initialState, action) => {
 }
 
 // action creators for profile page
-export const addNewPostActionCreator = () => ({type: ADD_NEW_POST})
-export const updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, text: text})
-export const likePostActionCreator = (index) => ({type: LIKE_POST, index: index})
+export const addNewPost = () => ({type: ADD_NEW_POST})
+export const updatePostText = (text) => ({type: UPDATE_POST_TEXT, text: text})
+export const likePost = (index) => ({type: LIKE_POST, index: index})
 
 export default profileReducer
