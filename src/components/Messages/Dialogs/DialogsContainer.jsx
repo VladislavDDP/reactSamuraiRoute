@@ -11,11 +11,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-const DialogsContainer = connect(mapStateToProps, {
-        sendMessage,
-        updateMessageText,
-        setActiveChatWithUser
-    })(Dialogs)
-
-export default DialogsContainer
+export default connect(mapStateToProps, {sendMessage, updateMessageText, setActiveChatWithUser})(Dialogs)
