@@ -3,7 +3,13 @@
   background-color: rgb(32, 30, 32);
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: #fff;
+}
+
+.login {
+  padding: 5px;
+  background: #bebebe7c;
+  border-radius: 5px;
 }

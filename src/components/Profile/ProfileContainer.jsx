@@ -8,13 +8,28 @@ import { withRouter } from 'react-router'
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = 2
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        .then(
-            response => {
-                this.props.setUserProfile(response.data)
-            }
-        )
+
+        if (!userId) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true}).then(
+                response => {
+                    if (!response.data.resultCode) {
+                        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${response.data.data.id}`)
+                                .then(
+                                    response => {
+                                        this.props.setUserProfile(response.data)
+                                    }
+                                )
+                    }
+                }
+            )
+        } else {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+                    .then(
+                        response => {
+                            this.props.setUserProfile(response.data)
+                        }
+                    )
+        }
     }
 
     render() {

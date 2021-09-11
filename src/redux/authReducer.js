@@ -3,7 +3,8 @@ const AUTH_USER = 'AUTH_USER'
 const initialState = {
     userId: null,
     email: null, 
-    login: null
+    login: null,
+    isAuthorized: false
 }
 
 const authReducer = (state=initialState, action) => {
@@ -11,7 +12,8 @@ const authReducer = (state=initialState, action) => {
         case AUTH_USER:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuthorized: true
             }
         default:
             return state
