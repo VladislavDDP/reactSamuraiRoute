@@ -1,5 +1,4 @@
 import s from './App.module.css'
-import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import Messages from './components/Messages/Messages'
@@ -9,11 +8,12 @@ import Settings from './components/Navbar/Settings/Settings'
 import Footer from './components/Footer/Footer'
 import { Route } from 'react-router-dom'
 import UsersContainer from './components/Users/UsersContainer'
+import HeaderContainer from './components/Header/HeaderContainer'
 
 const App = (props) => {
   return (
       <div className={s.app_wrapper}>
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className={s.content}>
 

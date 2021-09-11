@@ -1,4 +1,5 @@
 import s from './Header.module.css'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -6,6 +7,10 @@ const Header = () => {
             ~-~-~
             MICROBIUS
             ~-~-~
+
+            <div>
+                <NavLink to={'/login'}>Login</NavLink>
+            </div>
         </div>
     )
 }
