@@ -1,6 +1,7 @@
 import s from './Users.module.css'
 import avatar from "../../images/default_avatar.png"
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
 const Users = (props) => {
     const pagesNumbers = []
@@ -31,8 +32,24 @@ const Users = (props) => {
                         <div>{"u.location.country"}</div>
 
                         {u.followed
-                            ? <button onClick={() => {props.unfollowUser(u.id)} }>Unfollow</button> 
-                            : <button onClick={() => {props.followUser(u.id)} }>Follow</button>}
+                            ? <button onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {withCredentials: true}).then(
+                                    response => {
+                                        if (!response.data.resultCode) {
+                                            props.unfollowUser(u.id)
+                                        }
+                                    }
+                                )
+                            } }>Unfollow</button> 
+                            : <button onClick={() => {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {withCredentials: true}).then(
+                                    response => {
+                                        if (!response.data.resultCode) {
+                                            props.followUser(u.id)
+                                        }
+                                    }
+                                )
+                                }}>Follow</button>}
                     </div>
                 })
             }
