@@ -28,12 +28,16 @@ const Users = (props) => {
                         </NavLink>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
-                        <div>{"u.location.city"}</div>
-                        <div>{"u.location.country"}</div>
 
                         {u.followed
                             ? <button onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {withCredentials: true}).then(
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, 
+                                {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': 'e97a978c-244a-4e49-a0eb-b078429d27b8'
+                                    }
+                                }).then(
                                     response => {
                                         if (!response.data.resultCode) {
                                             props.unfollowUser(u.id)
@@ -42,7 +46,13 @@ const Users = (props) => {
                                 )
                             } }>Unfollow</button> 
                             : <button onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {withCredentials: true}).then(
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, 
+                                {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': 'e97a978c-244a-4e49-a0eb-b078429d27b8'
+                                    }
+                                }).then(
                                     response => {
                                         if (!response.data.resultCode) {
                                             props.followUser(u.id)
