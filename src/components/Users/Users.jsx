@@ -35,7 +35,7 @@ const Users = (props) => {
                                 {
                                     withCredentials: true,
                                     headers: {
-                                        'API-KEY': 'e97a978c-244a-4e49-a0eb-b078429d27b8'
+                                        'API-KEY': ''
                                     }
                                 }).then(
                                     response => {
@@ -50,7 +50,7 @@ const Users = (props) => {
                                 {
                                     withCredentials: true,
                                     headers: {
-                                        'API-KEY': 'e97a978c-244a-4e49-a0eb-b078429d27b8'
+                                        'API-KEY': ''
                                     }
                                 }).then(
                                     response => {
