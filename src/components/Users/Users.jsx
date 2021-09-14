@@ -31,7 +31,8 @@ const Users = (props) => {
 
                         {u.followed
                             ? <button onClick={() => {
-                                followAPI.unfollowUser(u.id).then(
+                                followAPI.unfollowUser(u.id)
+                                .then(
                                     response => {
                                         if (!response.resultCode) {
                                             props.unfollowUser(u.id)
@@ -44,7 +45,7 @@ const Users = (props) => {
                                         response => {
                                             if (!response.resultCode) {
                                                 props.followUser(u.id)
-                                            }
+                                            }                               
                                         }
                                     )
                                 }}>Follow</button>}
