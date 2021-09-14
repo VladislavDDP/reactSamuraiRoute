@@ -28,24 +28,28 @@ const Users = (props) => {
                         </NavLink>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
-
                         {u.followed
-                            ? <button onClick={() => {
+                            ? <button disabled={props.isFollowTimeOut.some(id => id === u.id)} onClick={() => {
+                                props.setFollowTimeOut(true, u.id)
                                 followAPI.unfollowUser(u.id)
                                 .then(
                                     response => {
                                         if (!response.resultCode) {
                                             props.unfollowUser(u.id)
                                         }
-                                    }
+                                        props.setFollowTimeOut(false, u.id)
+                                    }   
                                 )
+                                
                             } }>Unfollow</button> 
-                            : <button onClick={() => {
+                            : <button disabled={props.isFollowTimeOut.some(id => id === u.id)} onClick={() => {
+                                    props.setFollowTimeOut(true, u.id)
                                     followAPI.followUser(u.id).then(
                                         response => {
                                             if (!response.resultCode) {
                                                 props.followUser(u.id)
-                                            }                               
+                                            }    
+                                            props.setFollowTimeOut(false, u.id)                           
                                         }
                                     )
                                 }}>Follow</button>}

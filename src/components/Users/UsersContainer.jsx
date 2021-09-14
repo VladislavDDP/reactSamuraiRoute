@@ -2,9 +2,8 @@ import { connect } from "react-redux"
 import React from 'react'
 import Users from "./Users"
 import Preloader from './Preloader'
-import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching} from './../../redux/usersReducer';
+import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching, setFollowTimeOut} from './../../redux/usersReducer';
 import { userAPI } from "../API/api";
-
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -39,7 +38,9 @@ class UsersContainer extends React.Component {
                     currentPage={this.props.currentPage}
                     unfollowUser={this.props.unfollowUser}
                     followUser={this.props.followUser}
-                    setPage={this.setPage}  />   
+                    setPage={this.setPage}
+                    isFollowTimeOut={this.props.isFollowTimeOut}
+                    setFollowTimeOut={this.props.setFollowTimeOut}  />   
             </div>
         )
 
@@ -53,7 +54,8 @@ const mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         totalPagesCount: state.usersPage.totalPagesCount,
         pageSize: state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isFollowTimeOut: state.usersPage.isFollowTimeOut
     }
 }
 
@@ -63,5 +65,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalPagesCount,
-    setIsFetching
+    setIsFetching,
+    setFollowTimeOut
 })(UsersContainer)

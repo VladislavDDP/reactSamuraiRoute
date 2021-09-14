@@ -1,3 +1,6 @@
+div {
+    position: relative;
+}
 .profilePhoto {
     width: 15vw;
     margin-top: 15px;
@@ -8,10 +11,10 @@
 }
 
 .preloader {
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    z-index: 100;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
 }
 
 span {
@@ -23,4 +26,8 @@ span {
 
 span:hover {
     background: rgb(255, 160, 207);
+}
+
+button:disabled {
+    background: rgb(131, 131, 131);
 }

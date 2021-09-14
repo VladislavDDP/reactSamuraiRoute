@@ -4,6 +4,7 @@ const SET_STATE = 'SET_STATE'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT'
 const SET_IS_FETCHING = 'SET_IS_FETCHING'
+const SET_FOLLOW_TIMEOUT = 'SET_FOLLOW_TIMEOUT'
 
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     currentPage: 1,
     totalPagesCount: 80,
     pageSize: 10,
-    isFetching: true 
+    isFetching: true,
+    isFollowTimeOut: []
 }
 
 const usersReducer = (state=initialState, action) => {
@@ -62,7 +64,15 @@ const usersReducer = (state=initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-        
+
+        case SET_FOLLOW_TIMEOUT:
+            return {
+                ...state,
+                isFollowTimeOut: action.isFetching
+                ? [...state.isFollowTimeOut, action.userId]
+                : state.isFollowTimeOut.filter(id => id !== action.userId)
+            }
+
         default:
             return state
     }
@@ -75,5 +85,6 @@ export const setUsers = (users) => ({type: SET_STATE, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalPagesCount = (totalPagesCount) => ({type: SET_TOTAL_PAGES_COUNT, totalPagesCount})
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
+export const setFollowTimeOut = (isFetching, userId) => ({type: SET_FOLLOW_TIMEOUT, isFetching, userId})
 
 export default usersReducer
