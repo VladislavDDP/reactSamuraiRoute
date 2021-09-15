@@ -5,7 +5,8 @@ import { followAPI } from '../API/api'
 
 const Users = (props) => {
     const pagesNumbers = []
-    const pages = Math.ceil(props.totalPagesCount / props.pageSize)
+    // const pages = Math.ceil(props.totalPagesCount / props.pageSize)
+    const pages = 8
     for (let i = 1; i <= pages; i++) {
         pagesNumbers.push(i)
     }

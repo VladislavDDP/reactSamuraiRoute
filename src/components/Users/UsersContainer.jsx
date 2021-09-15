@@ -9,20 +9,20 @@ import { userAPI } from "../API/api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        // this.props.setIsFetching(true)
-        // userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-        //     this.props.setUsers(response.items)
-        //     this.props.setIsFetching(false)
-        // })
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        this.props.setIsFetching(true)
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+            this.props.setUsers(response.items)
+            this.props.setIsFetching(false)
+        })
+        //this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     setPage = (page) => {
         this.props.setCurrentPage(page)
         this.props.setIsFetching(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+        userAPI.getUsers(page, this.props.pageSize).then(response => {
             this.props.setUsers(response.items)
-            this.props.setTotalPagesCount(response.totalCount > 1000? 80 : 50)
+            this.props.setTotalPagesCount(response.totalCount > 1000? 80 : 80)
             this.props.setIsFetching(false)
         })
     }

@@ -14,7 +14,7 @@ const initialState = {
     currentPage: 1,
     totalPagesCount: 80,
     pageSize: 10,
-    isFetching: true,
+    isFetching: false,
     isFollowTimeOut: []
 }
 
