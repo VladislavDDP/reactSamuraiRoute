@@ -1,3 +1,5 @@
+import { userAPI } from "../components/API/api"
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_STATE = 'SET_STATE'
@@ -86,5 +88,16 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalPagesCount = (totalPagesCount) => ({type: SET_TOTAL_PAGES_COUNT, totalPagesCount})
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
 export const setFollowTimeOut = (isFetching, userId) => ({type: SET_FOLLOW_TIMEOUT, isFetching, userId})
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true))
+        userAPI.getUsers(currentPage, pageSize).then(response => {
+            dispatch(setUsers(response.items))
+            dispatch(setTotalPagesCount(response.totalCount > 1000? 80 : 50))
+            dispatch(setIsFetching(false))
+        })
+    }
+}
 
 export default usersReducer

@@ -2,16 +2,19 @@ import { connect } from "react-redux"
 import React from 'react'
 import Users from "./Users"
 import Preloader from './Preloader'
-import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching, setFollowTimeOut} from './../../redux/usersReducer';
+import {followUser, unfollowUser, setUsers,
+        setCurrentPage, setTotalPagesCount, setIsFetching,
+        setFollowTimeOut, getUsersThunkCreator} from './../../redux/usersReducer';
 import { userAPI } from "../API/api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items)
-            this.props.setIsFetching(false)
-        })
+        // this.props.setIsFetching(true)
+        // userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+        //     this.props.setUsers(response.items)
+        //     this.props.setIsFetching(false)
+        // })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     setPage = (page) => {
@@ -66,5 +69,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalPagesCount,
     setIsFetching,
-    setFollowTimeOut
+    setFollowTimeOut,
+    getUsersThunkCreator
 })(UsersContainer)
