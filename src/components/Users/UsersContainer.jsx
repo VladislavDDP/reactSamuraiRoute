@@ -2,29 +2,15 @@ import { connect } from "react-redux"
 import React from 'react'
 import Users from "./Users"
 import Preloader from './Preloader'
-import {followUser, unfollowUser, setUsers,
-        setCurrentPage, setTotalPagesCount, setIsFetching,
-        setFollowTimeOut, getUsersThunkCreator} from './../../redux/usersReducer';
-import { userAPI } from "../API/api";
+import {followUser, unfollowUser, setFollowTimeOut, getUsersThunkCreator} from './../../redux/usersReducer';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items)
-            this.props.setIsFetching(false)
-        })
-        //this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     setPage = (page) => {
-        this.props.setCurrentPage(page)
-        this.props.setIsFetching(true)
-        userAPI.getUsers(page, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items)
-            this.props.setTotalPagesCount(response.totalCount > 1000? 80 : 80)
-            this.props.setIsFetching(false)
-        })
+        this.props.getUsersThunkCreator(page, this.props.pageSize)
     }
 
     render() {
@@ -32,7 +18,6 @@ class UsersContainer extends React.Component {
             <div>
                 
                 {this.props.isFetching ? <Preloader /> : null }
-                
 
                 <Users  totalPagesCount={this.props.totalPagesCount}
                     users={this.props.users}
@@ -45,9 +30,7 @@ class UsersContainer extends React.Component {
                     isFollowTimeOut={this.props.isFollowTimeOut}
                     setFollowTimeOut={this.props.setFollowTimeOut}  />   
             </div>
-        )
-
-            
+        )            
     }
 }
 
@@ -63,12 +46,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    followUser,
-    unfollowUser,
-    setUsers,
-    setCurrentPage,
-    setTotalPagesCount,
-    setIsFetching,
-    setFollowTimeOut,
-    getUsersThunkCreator
-})(UsersContainer)
+    followUser, unfollowUser, setFollowTimeOut, getUsersThunkCreator})(UsersContainer)

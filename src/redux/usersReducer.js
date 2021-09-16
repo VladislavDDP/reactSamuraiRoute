@@ -91,6 +91,7 @@ export const setFollowTimeOut = (isFetching, userId) => ({type: SET_FOLLOW_TIMEO
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {
+        dispatch(setCurrentPage(currentPage))
         dispatch(setIsFetching(true))
         userAPI.getUsers(currentPage, pageSize).then(response => {
             dispatch(setUsers(response.items))
