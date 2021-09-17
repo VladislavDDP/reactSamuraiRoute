@@ -1,4 +1,4 @@
-import { userAPI } from "../components/API/api"
+import { followAPI, userAPI } from "../components/API/api"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -89,7 +89,7 @@ export const setTotalPagesCount = (totalPagesCount) => ({type: SET_TOTAL_PAGES_C
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
 export const setFollowTimeOut = (isFetching, userId) => ({type: SET_FOLLOW_TIMEOUT, isFetching, userId})
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
+export const getUsers = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(setCurrentPage(currentPage))
         dispatch(setIsFetching(true))
@@ -98,6 +98,35 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
             dispatch(setTotalPagesCount(response.totalCount > 1000? 80 : 50))
             dispatch(setIsFetching(false))
         })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(setFollowTimeOut(true, userId))
+        followAPI.unfollowUser(userId)
+        .then(
+            response => {
+                if (!response.resultCode) {
+                    dispatch(unfollowUser(userId))
+                }
+                dispatch(setFollowTimeOut(false, userId))
+            }   
+        )
+    }
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(setFollowTimeOut(true, userId))
+        followAPI.followUser(userId).then(
+            response => {
+                if (!response.resultCode) {
+                    dispatch(followUser(userId))
+                }    
+                dispatch(setFollowTimeOut(false, userId))
+            }
+        )
     }
 }
 

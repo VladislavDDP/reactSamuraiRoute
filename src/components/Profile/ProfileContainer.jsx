@@ -10,7 +10,6 @@ class ProfileContainer extends React.Component {
         let userId = this.props.match.params.userId
 
         if (!userId) {
-            
             profileAPI.setMyProfile().then(
                 response => {
                     if (!response.resultCode) {
@@ -23,9 +22,7 @@ class ProfileContainer extends React.Component {
                     }
                 }
             )
-            
         } else {
-            
             profileAPI.setUserProfile(userId).then(response => this.props.setUserProfile(response))
         }
     }

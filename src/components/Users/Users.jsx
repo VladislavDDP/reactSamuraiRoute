@@ -1,7 +1,6 @@
 import s from './Users.module.css'
 import avatar from "../../images/default_avatar.png"
 import { NavLink } from 'react-router-dom'
-import { followAPI } from '../API/api'
 
 const Users = (props) => {
     const pagesNumbers = []
@@ -31,29 +30,10 @@ const Users = (props) => {
                         <div>{u.status}</div>
                         {u.followed
                             ? <button disabled={props.isFollowTimeOut.some(id => id === u.id)} onClick={() => {
-                                props.setFollowTimeOut(true, u.id)
-                                followAPI.unfollowUser(u.id)
-                                .then(
-                                    response => {
-                                        if (!response.resultCode) {
-                                            props.unfollowUser(u.id)
-                                        }
-                                        props.setFollowTimeOut(false, u.id)
-                                    }   
-                                )
-                                
-                            } }>Unfollow</button> 
+                                props.unfollow(u.id)} }>Unfollow</button> 
+
                             : <button disabled={props.isFollowTimeOut.some(id => id === u.id)} onClick={() => {
-                                    props.setFollowTimeOut(true, u.id)
-                                    followAPI.followUser(u.id).then(
-                                        response => {
-                                            if (!response.resultCode) {
-                                                props.followUser(u.id)
-                                            }    
-                                            props.setFollowTimeOut(false, u.id)                           
-                                        }
-                                    )
-                                }}>Follow</button>}
+                                    props.follow(u.id)}}>Follow</button>}
                     </div>
                 })
             }

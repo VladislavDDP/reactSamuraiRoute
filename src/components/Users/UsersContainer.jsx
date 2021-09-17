@@ -2,15 +2,15 @@ import { connect } from "react-redux"
 import React from 'react'
 import Users from "./Users"
 import Preloader from './Preloader'
-import {followUser, unfollowUser, setFollowTimeOut, getUsersThunkCreator} from './../../redux/usersReducer';
+import {follow, unfollow, setFollowTimeOut, getUsers} from './../../redux/usersReducer';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     setPage = (page) => {
-        this.props.getUsersThunkCreator(page, this.props.pageSize)
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
@@ -24,8 +24,8 @@ class UsersContainer extends React.Component {
                     pageSize={this.props.pageSize}
                     isFetching={this.props.isFetching}
                     currentPage={this.props.currentPage}
-                    unfollowUser={this.props.unfollowUser}
-                    followUser={this.props.followUser}
+                    unfollow={this.props.unfollow}
+                    follow={this.props.follow}
                     setPage={this.setPage}
                     isFollowTimeOut={this.props.isFollowTimeOut}
                     setFollowTimeOut={this.props.setFollowTimeOut}  />   
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    followUser, unfollowUser, setFollowTimeOut, getUsersThunkCreator})(UsersContainer)
+    follow, unfollow, setFollowTimeOut, getUsers})(UsersContainer)
