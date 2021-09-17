@@ -1,3 +1,5 @@
+import { profileAPI } from "../components/API/api"
+
 const ADD_NEW_POST = 'ADD_NEW_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
 const LIKE_POST = 'LIKE_POST'
@@ -58,6 +60,29 @@ const profileReducer = (state=initialState, action) => {
 export const addNewPost = () => ({type: ADD_NEW_POST})
 export const updatePostText = (text) => ({type: UPDATE_POST_TEXT, text})
 export const likePost = (index) => ({type: LIKE_POST, index})
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+export const setOwnProfile = () => {
+    return (dispatch) => {
+        profileAPI.setMyProfile().then(
+            response => {
+                if (!response.resultCode) {
+                    profileAPI.setUserProfile(response.data.id)
+                        .then(
+                            response => {
+                                dispatch(setProfile(response))
+                            }
+                        )
+                }
+            }
+        )
+    }
+}
+
+export const setUserProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.setUserProfile(userId).then(response => dispatch(setProfile(response)))
+    }
+}
 
 export default profileReducer

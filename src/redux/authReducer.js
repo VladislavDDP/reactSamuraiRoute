@@ -1,3 +1,5 @@
+import { loginAPI } from "../components/API/api" 
+
 const AUTH_USER = 'AUTH_USER'
 
 const initialState = {
@@ -20,6 +22,19 @@ const authReducer = (state=initialState, action) => {
     }
 }
 
-export default authReducer
-
 export const authUserProfile = (userId, email, login) => ({type: AUTH_USER, data: {userId, email, login}})
+
+export const authAccount = () => {
+    return (dispatch) => {
+        loginAPI.authMe().then(
+            response => {
+                const {id, email, login} = response.data
+                if (!response.resultCode) {
+                    dispatch(authUserProfile(id, email, login))
+                }
+            }
+        )
+    }
+}
+
+export default authReducer
