@@ -1,4 +1,4 @@
-import { followAPI, userAPI } from "../components/API/api"
+import { userAPI } from "../components/API/api"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -104,7 +104,7 @@ export const getUsers = (currentPage, pageSize) => {
 export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(setFollowTimeOut(true, userId))
-        followAPI.unfollowUser(userId)
+        userAPI.unfollowUser(userId)
         .then(
             response => {
                 if (!response.resultCode) {
@@ -119,7 +119,7 @@ export const unfollow = (userId) => {
 export const follow = (userId) => {
     return (dispatch) => {
         dispatch(setFollowTimeOut(true, userId))
-        followAPI.followUser(userId).then(
+        userAPI.followUser(userId).then(
             response => {
                 if (!response.resultCode) {
                     dispatch(followUser(userId))
