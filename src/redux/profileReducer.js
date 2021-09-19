@@ -4,6 +4,7 @@ const ADD_NEW_POST = 'ADD_NEW_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
 const LIKE_POST = 'LIKE_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_USER_STATUS = 'SET_USER_STATUS'
 
 const initialState = {
     posts: [
@@ -11,6 +12,7 @@ const initialState = {
         {id: 2, name: 'Vlad', text: 'Let`s speak about react?', likes_count: 1, liked: false},
         {id: 1, name: 'Vlad', text: 'As for my plans for weekend...', likes_count: 3, liked: false},
     ],
+    status: 'hello',
     newPostText: '',
     profile: null
 }
@@ -51,6 +53,12 @@ const profileReducer = (state=initialState, action) => {
                 ...state,
                 profile: action.profile
             }
+
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                status: action.text
+            }
         default:
             return state
     }
@@ -61,6 +69,7 @@ export const addNewPost = () => ({type: ADD_NEW_POST})
 export const updatePostText = (text) => ({type: UPDATE_POST_TEXT, text})
 export const likePost = (index) => ({type: LIKE_POST, index})
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setStatus = (text) => ({type: SET_USER_STATUS, text})
 
 export const setOwnProfile = () => {
     return (dispatch) => {
