@@ -10,7 +10,6 @@ class ProfileStatus extends React.Component {
         }
       }
     
-
     turnOnEditMode = () =>  {
         this.setState({
             editMode: true
@@ -23,9 +22,8 @@ class ProfileStatus extends React.Component {
         })
     }
 
-    changeStatusText(event) {
+    changeStatusText = (event) => {
         const text = event.target.value 
-        debugger
         this.props.setStatus(text)
     }
 
@@ -35,7 +33,7 @@ class ProfileStatus extends React.Component {
                 {
                     !this.state.editMode
                     ? <div onDoubleClick={ this.turnOnEditMode }>{this.props.status}</div>
-                    : <div><input onChange={this.changeStatusText.bind(this)} autoFocus={true} onBlur={ this.turnOffEditMode } type="text" value={this.props.status} /></div> 
+                    : <div><input onChange={this.changeStatusText} autoFocus={true} onBlur={ this.turnOffEditMode } type="text" value={this.props.status} /></div> 
                 }
             </div>
         )
