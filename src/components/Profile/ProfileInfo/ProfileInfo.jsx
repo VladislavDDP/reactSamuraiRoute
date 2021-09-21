@@ -1,8 +1,7 @@
 import s from './ProfileInfo.module.css'
 import profile_img from '../../../images/profile_default.png'
 import Preloader from '../../Users/Preloader'
-import ProfileStatusContainer from './ProfileStatusContainer'
-
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -15,7 +14,7 @@ const ProfileInfo = (props) => {
             <div className={s.profile_info}>
                 <h2>{props.profile.fullName}</h2>
                 <h3>{props.profile.aboutMe}</h3>
-                <ProfileStatusContainer />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 <hr />
                 <ul>
                     <li>Work: {props.profile.lookingForAJobDescription || '-'}</li>

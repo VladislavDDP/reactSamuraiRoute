@@ -15,17 +15,40 @@ export const userAPI = {
                        .then(response => response.data)
     },
     unfollowUser(id) {
+        console.warn('Old method use followAPI method')
+        followAPI.unfollowUser(id)
+    },
+    followUser(id) {
+        console.warn('Old method use followAPI method')
+        followAPI.followUser(id)
+    }
+}
+
+export const followAPI = {
+    unfollowUser(id) {
         return instance.delete(`follow/${id}`).then(response => response.data)
     },
     followUser(id) {
         return instance.post(`follow/${id}`, {}).then(response => response.data)
-    },
+    }
+}
+
+
+export const profileAPI = {
     setMyProfile() {
         return instance.get('auth/me').then(response => response.data)
     },
 
     setUserProfile(userId) {
         return instance.get(`profile/${userId}`).then(response => response.data)
+    },
+
+    getProfileStatus(id) {
+        return instance.get(`profile/status/${id}`)
+    },
+
+    updateProfileStatus(status) {
+        return instance.put('profile/status', {status: status})
     }
 }
 

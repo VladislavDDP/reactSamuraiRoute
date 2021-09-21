@@ -1,4 +1,3 @@
-import { setStatus } from '../../../redux/profileReducer'
 import { connect } from 'react-redux'
 import ProfileStatus from './ProfileStatus'
 
@@ -8,8 +7,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const ProfileStatusContainer = connect(mapStateToProps, {
-    setStatus
-})(ProfileStatus)
+const ProfileStatusContainer = connect(mapStateToProps, {})(ProfileStatus)
 
 export default ProfileStatusContainer

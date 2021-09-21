@@ -1,4 +1,4 @@
-import { userAPI } from "../components/API/api"
+import { profileAPI } from "../components/API/api"
 
 const ADD_NEW_POST = 'ADD_NEW_POST'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
@@ -73,10 +73,10 @@ export const setStatus = (text) => ({type: SET_USER_STATUS, text})
 
 export const setOwnProfile = () => {
     return (dispatch) => {
-        userAPI.setMyProfile().then(
+        profileAPI.setMyProfile().then(
             response => {
                 if (!response.resultCode) {
-                    userAPI.setUserProfile(response.data.id)
+                    profileAPI.setUserProfile(response.data.id)
                         .then(
                             response => {
                                 dispatch(setProfile(response))
@@ -90,7 +90,27 @@ export const setOwnProfile = () => {
 
 export const setUserProfile = (userId) => {
     return (dispatch) => {
-        userAPI.setUserProfile(userId).then(response => dispatch(setProfile(response)))
+        profileAPI.setUserProfile(userId).then(response => dispatch(setProfile(response)))
+    }
+}
+
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileStatus(userId)
+            .then(response => dispatch(setStatus(response.data)))
+    }
+}
+
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateProfileStatus(status)
+            .then(response => {
+                if(response.data.resultCode === 0) {
+                    debugger
+                    dispatch(setStatus(status))
+                }
+            })
+                
     }
 }
 
