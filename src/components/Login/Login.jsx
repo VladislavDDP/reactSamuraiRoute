@@ -1,3 +1,6 @@
+import { reduxForm } from "redux-form"
+
+
 
 const LoginForm = () => {
     return (
@@ -10,11 +13,13 @@ const LoginForm = () => {
     )
 }
 
+const ReduxLoginForm = reduxForm({form: 'login-form'})(LoginForm)
+
 const Login = () => {
     return (
         <div>
             <h3>Login page</h3>
-            <LoginForm />
+            <ReduxLoginForm />
         </div>
     )
 }
