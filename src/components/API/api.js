@@ -13,14 +13,6 @@ export const userAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`, )
                        .then(response => response.data)
-    },
-    unfollowUser(id) {
-        console.warn('Old method use followAPI method')
-        followAPI.unfollowUser(id)
-    },
-    followUser(id) {
-        console.warn('Old method use followAPI method')
-        followAPI.followUser(id)
     }
 }
 
@@ -56,5 +48,10 @@ export const loginAPI = {
     authMe() {
         return instance.get('auth/me')
              .then(response => response.data)
+    },
+    authorization(email, password, rememberMe) {
+        debugger
+        return instance.post('auth/login', {email, password, rememberMe})
+                       .then(response => response.data)
     }
 }
