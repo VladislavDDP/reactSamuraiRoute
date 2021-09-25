@@ -1,4 +1,5 @@
 import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -13,30 +14,34 @@ const MyPosts = (props) => {
                                                         likePost={likePost} 
                                                         index={index} text={post.text} 
                                                         likes_count={post.likes_count}/>))
-
-    const updatePostText = (event) => {
-        const text = event.target.value 
-        props.updatePostText(text)
-    }
     
-    const addPost = () => {
-        props.addNewPost()
+    const addPost = (value) => {
+        props.addNewPost(value.postText)
     }
 
     return (
         <div>
-            <div className={s.add_post}>
-                <input onChange={updatePostText}
-                       value={props.newPostText} 
-                       className={s.input_post} 
-                       type='text' placeholder='Type something...'/>
-                <button onClick={addPost} className={s.add_post_btn}>Add</button>
-            </div>
+            <ReduxAddPostForm onSubmit={addPost} />
+            
             <div className={s.posts}>
                 {posts}
             </div>
         </div>
     )
 }
+
+const AddPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={s.add_post}>
+                <Field className={s.input_post} name='postText'
+                    component='input' placeholder='Type something...' />
+                <button className={s.add_post_btn}>Add</button>
+            </div>
+        </form>
+    )
+}
+
+const ReduxAddPostForm = reduxForm({form: 'add-post-form'})(AddPostForm)
 
 export default MyPosts
