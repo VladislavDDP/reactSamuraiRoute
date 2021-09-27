@@ -1,8 +1,10 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { MaxLengthCreator } from '../../validators/validators'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
+const validateLength20 = MaxLengthCreator(20)
 
 const MyPosts = (props) => {
     const likePost = (index) => {
@@ -34,7 +36,7 @@ const AddPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.add_post}>
-                <Field className={s.input_post} name='postText'
+                <Field className={s.input_post} validate={[validateLength20]} name='postText'
                     component='input' placeholder='Type something...' />
                 <button className={s.add_post_btn}>Add</button>
             </div>
