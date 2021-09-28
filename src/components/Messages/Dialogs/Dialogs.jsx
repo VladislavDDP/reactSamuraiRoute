@@ -3,6 +3,7 @@ import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { isEmpty } from '../../validators/validators'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
@@ -33,7 +34,7 @@ const MessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.send_message}>
-                <Field component='textarea' className={s.messageTextarea} placeholder='Type message...' name="messageBody" />
+                <Field component='textarea' validate={[isEmpty]} className={s.messageTextarea} placeholder='Type message...' name="messageBody" />
                 <button className={s.send_message_btn}>&gt;</button>
             </div>
         </form>
