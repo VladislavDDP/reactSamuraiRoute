@@ -1,0 +1,12 @@
+.error {
+    outline: 2px solid rgb(221, 71, 71);
+}
+
+.alert {
+    font-size: 10px;
+}
+
+.input {
+    height: 30px;
+}
+  

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { MaxLengthCreator } from '../../validators/validators'
+import FormControl from '../../common/FormControl'
+import { isEmpty, MaxLengthCreator } from '../../validators/validators'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -36,8 +37,8 @@ const AddPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.add_post}>
-                <Field className={s.input_post} validate={[validateLength20]} name='postText'
-                    component='input' placeholder='Type something...' />
+                <Field className={s.input_post} validate={[isEmpty, validateLength20]} name='postText'
+                    component={FormControl} placeholder='Type something...' />
                 <button className={s.add_post_btn}>Add</button>
             </div>
         </form>
