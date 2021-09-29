@@ -28,7 +28,9 @@ const authReducer = (state=initialState, action) => {
     }
 }
 
-export const authUserProfile = (userId, email, login) => ({type: AUTH_USER, data: {userId, email, login}})
+export const authUserProfile = (userId, email, login, isAuth=false) => (
+    {type: AUTH_USER, data: {userId, email, login, isAuth}}
+)
 export const authorization = (userId) => ({type: AUTHORIZATION, data: {userId}})
 
 export const authAccount = () => {
@@ -37,20 +39,31 @@ export const authAccount = () => {
             response => {
                 const {id, email, login} = response.data
                 if (!response.resultCode) {
-                    dispatch(authUserProfile(id, email, login))
+                    dispatch(authUserProfile(id, email, login, true))
                 }
             }
         )
     }
 }
 
-export const userAuthorization = (email, password, rememberMe) => {
-    debugger
+export const login = (email, password, rememberMe) => {
     return (dispatch) => {
-        loginAPI.authorization(email, password, rememberMe).then(
+        loginAPI.login(email, password, rememberMe).then(
             response => {
                 if (response.resultCode === 0) {
-                    dispatch(authorization(response.userId))
+                    dispatch(authAccount())
+                }
+            }
+        )
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        loginAPI.logout().then(
+            response => {
+                if (response.resultCode === 0) {
+                    dispatch(authUserProfile(null, null, null, false))
                 }
             }
         )
