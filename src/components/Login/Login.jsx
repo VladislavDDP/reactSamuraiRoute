@@ -1,17 +1,20 @@
 import { reduxForm, Field } from "redux-form"
-
+import { isEmpty } from "../validators/validators"
+import FormControl from "../common/FormControl"
+import { connect } from "react-redux"
+import { login } from "../../redux/authReducer"
 
 const LoginForm = (props) => {
     return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field component={'input'} type="text" name={'login_email'} placeholder={'Login'} />
+                    <Field component={FormControl} validate={[isEmpty]} type="text" name={'login_email'} placeholder={'Login'} />
                 </div>
                 <div>
-                    <Field component={'input'} type="password" name={'password'} placeholder={'Password'} />
+                    <Field component={FormControl} validate={[isEmpty]} type="password" name={'password'} placeholder={'Password'} />
                 </div>
                 <div>
-                    <Field component={'input'} type="checkbox" name={'remember_login'} id='remember_login'  />
+                    <Field component={'input'} validate={[isEmpty]} type="checkbox" name={'remember_login'} id='remember_login'  />
                     <label htmlFor="remember_login">remember me</label>
                 </div>
                 <button type='submit'>Login</button>
@@ -22,12 +25,11 @@ const LoginForm = (props) => {
 const ReduxLoginForm = reduxForm({form: 'login-form'})(LoginForm)
 
 
-const Login = () => {
+const Login = (props) => {
 
     const onSubmit = (data) => {
         const {login_email, password, remember_login} = data
-        console.log(login_email, password, remember_login)
-        // userAuthorization(login_email, password, remember_login)
+        props.login(login_email, password, remember_login)
     }
     return (
         <div>
@@ -37,4 +39,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default connect(null, {login})(Login) 

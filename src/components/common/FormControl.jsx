@@ -2,7 +2,6 @@ import s from './FormControl.module.css'
 
 const FormControl = ({input, meta, ...props}) => {
     const status = meta.error && meta.touched
-    debugger
     return (    
         <div>
             <div>
