@@ -3,6 +3,7 @@ import { isEmpty } from "../validators/validators"
 import FormControl from "../common/FormControl"
 import { connect } from "react-redux"
 import { login } from "../../redux/authReducer"
+import { Redirect } from "react-router"
 
 const LoginForm = (props) => {
     return (
@@ -31,12 +32,19 @@ const Login = (props) => {
         const {login_email, password, remember_login} = data
         props.login(login_email, password, remember_login)
     }
+    
     return (
         <div>
+            { props.isAuth ? <Redirect to={'/profile'} /> : '' }
+
             <h3>Login page</h3>
             <ReduxLoginForm onSubmit={onSubmit} />
         </div>
     )
 }
 
-export default connect(null, {login})(Login) 
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuthorized
+})
+
+export default connect(mapStateToProps, {login})(Login) 

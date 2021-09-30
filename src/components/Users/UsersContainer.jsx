@@ -48,7 +48,6 @@ const mapStateToProps = (state) => {
 }
 
 
-
 export default compose(
     connect(mapStateToProps, {follow, unfollow, setFollowTimeOut, getUsers}),
     RedirectLogin
