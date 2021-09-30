@@ -15,10 +15,11 @@ const Header = (props) => {
 
             <div className={s.profile_header}>
                 <div className={s.login}>
-                    { props.isAuthorized ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+                    { props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
                 </div>
-                <button className={s.logout_btn} onClick={props.logout}>logout</button>
-                { props.isAuth ? <Redirect to={'/login'} /> : '' }
+                { props.isAuth 
+                ? <button className={s.logout_btn} onClick={props.logout}>logout</button> 
+                : <Redirect to={'/login'} /> }
             </div>
             
         </div>  

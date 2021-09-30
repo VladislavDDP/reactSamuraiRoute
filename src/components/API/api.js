@@ -49,7 +49,8 @@ export const loginAPI = {
         return instance.get('auth/me')
              .then(response => response.data)
     },
-    login(email, password, rememberMe=false) {
+    login(email, password, rememberMe) {
+        debugger
         return instance.post('auth/login', {email, password, rememberMe})
                        .then(response => response.data)
     },

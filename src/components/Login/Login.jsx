@@ -15,8 +15,8 @@ const LoginForm = (props) => {
                     <Field component={FormControl} validate={[isEmpty]} type="password" name={'password'} placeholder={'Password'} />
                 </div>
                 <div>
-                    <Field component={'input'} validate={[isEmpty]} type="checkbox" name={'remember_login'} id='remember_login'  />
-                    <label htmlFor="remember_login">remember me</label>
+                    <Field component={'input'} type="checkbox" name={'remember_login'} id='remember_login'  />
+                    <label for={'remember_login'}>remember me</label>
                 </div>
                 <button type='submit'>Login</button>
             </form>
@@ -29,7 +29,8 @@ const ReduxLoginForm = reduxForm({form: 'login-form'})(LoginForm)
 const Login = (props) => {
 
     const onSubmit = (data) => {
-        const {login_email, password, remember_login} = data
+        let {login_email, password, remember_login} = data
+        remember_login = remember_login ? true : false
         props.login(login_email, password, remember_login)
     }
     

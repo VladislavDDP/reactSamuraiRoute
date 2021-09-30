@@ -11,12 +11,13 @@ const initialState = {
 }
 
 const authReducer = (state=initialState, action) => {
+
     switch(action.type) {
         case AUTH_USER:
             return {
                 ...state,
                 ...action.data,
-                isAuthorized: true
+                isAuthorized: action.data.isAuth
             }
         case AUTHORIZATION:
             return {
@@ -28,7 +29,7 @@ const authReducer = (state=initialState, action) => {
     }
 }
 
-export const authUserProfile = (userId, email, login, isAuth=false) => (
+export const authUserProfile = (userId, email, login, isAuth) => (
     {type: AUTH_USER, data: {userId, email, login, isAuth}}
 )
 export const authorization = (userId) => ({type: AUTHORIZATION, data: {userId}})
@@ -46,7 +47,7 @@ export const authAccount = () => {
     }
 }
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, rememberMe=false) => {
     return (dispatch) => {
         loginAPI.login(email, password, rememberMe).then(
             response => {
