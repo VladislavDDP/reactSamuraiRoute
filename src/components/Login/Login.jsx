@@ -4,6 +4,7 @@ import FormControl from "../common/FormControl"
 import { connect } from "react-redux"
 import { login } from "../../redux/authReducer"
 import { Redirect } from "react-router"
+import s from './../common/FormControl.module.css'
 
 const LoginForm = (props) => {
     return (
@@ -17,6 +18,9 @@ const LoginForm = (props) => {
                 <div>
                     <Field component={'input'} type="checkbox" name={'remember_login'} id='remember_login'  />
                     <label for={'remember_login'}>remember me</label>
+                </div>
+                <div className={s.error_box}>
+                    {props.error}
                 </div>
                 <button type='submit'>Login</button>
             </form>
