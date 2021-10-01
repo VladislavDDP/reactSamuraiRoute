@@ -55,7 +55,8 @@ export const login = (email, password, rememberMe=false) => {
                 if (response.resultCode === 0) {
                     dispatch(authAccount())
                 } else {
-                    dispatch(stopSubmit('login-form', {_error: 'Incorrect!'}))
+                    const message = response.messages.length ? response.messages : 'Error on server...'
+                    dispatch(stopSubmit('login-form', {_error: message}))
                 }
             }
         )
