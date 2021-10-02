@@ -19,13 +19,15 @@
 }
 
 .logout_btn {
-  background: #f33030d2;
+  background: #f84c4cd2;
   border-radius: 5px;
   border: none;
   padding: 5px;
   cursor: pointer;
+  color: #fff;
 }
 
 .logout_btn:hover {
-  background: #ece1e1d2;
+  background: hsl(0, 0%, 100%);
+  color: #f84c4cd2;
 }

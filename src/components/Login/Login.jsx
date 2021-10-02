@@ -17,7 +17,7 @@ const LoginForm = (props) => {
                 </div>
                 <div>
                     <Field component={'input'} type="checkbox" name={'remember_login'} id='remember_login'  />
-                    <label for={'remember_login'}>remember me</label>
+                    <label htmlFor={'remember_login'}>remember me</label>
                 </div> 
                 { props.error &&
                     <div className={s.error_box}>
