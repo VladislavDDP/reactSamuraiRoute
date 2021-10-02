@@ -19,12 +19,15 @@
 }
 
 .logout_btn {
-  background: #f84c4cd2;
-  border-radius: 5px;
   border: none;
-  padding: 5px;
-  cursor: pointer;
+  border-radius: 5px;
+  outline: 2px solid #f84c4cd2;;
+  background: rgb(32, 30, 32);
   color: #fff;
+  cursor: pointer;
+  font-size: .8em;
+  font-weight: 700;
+  margin-left: 5px;
 }
 
 .logout_btn:hover {

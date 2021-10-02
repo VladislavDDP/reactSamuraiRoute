@@ -24,7 +24,8 @@ const LoginForm = (props) => {
                         {props.error}
                     </div>
                 }
-                <button type='submit'>Login</button>
+                <br />
+                <button type='submit' className={s.login_btn}>Login</button>
             </form>
     )
 }

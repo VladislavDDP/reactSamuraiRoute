@@ -18,4 +18,17 @@
     display: block;
     text-align: center;
 }
+
+.login_btn {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgb(32, 30, 32);
+    color: #fff;
+    font-size: .8em;
+    font-weight: 700;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
   
