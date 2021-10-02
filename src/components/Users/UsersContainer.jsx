@@ -2,27 +2,17 @@ import { connect } from "react-redux"
 import React from 'react'
 import Users from "./Users"
 import Preloader from './Preloader'
-import {followUser, unfollowUser, setUsers, setCurrentPage, setTotalPagesCount, setIsFetching} from './../../redux/usersReducer';
-import { userAPI } from "../API/api";
-
+import {follow, unfollow, setFollowTimeOut, getUsers} from './../../redux/usersReducer';
+import { compose } from "redux";
+import { RedirectLogin } from "../hoc/RedirectLogin";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items)
-            this.props.setIsFetching(false)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     setPage = (page) => {
-        this.props.setCurrentPage(page)
-        this.props.setIsFetching(true)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setUsers(response.items)
-            this.props.setTotalPagesCount(response.totalCount > 1000? 80 : 50)
-            this.props.setIsFetching(false)
-        })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
@@ -30,20 +20,19 @@ class UsersContainer extends React.Component {
             <div>
                 
                 {this.props.isFetching ? <Preloader /> : null }
-                
 
                 <Users  totalPagesCount={this.props.totalPagesCount}
                     users={this.props.users}
                     pageSize={this.props.pageSize}
                     isFetching={this.props.isFetching}
                     currentPage={this.props.currentPage}
-                    unfollowUser={this.props.unfollowUser}
-                    followUser={this.props.followUser}
-                    setPage={this.setPage}  />   
+                    unfollow={this.props.unfollow}
+                    follow={this.props.follow}
+                    setPage={this.setPage}
+                    isFollowTimeOut={this.props.isFollowTimeOut}
+                    setFollowTimeOut={this.props.setFollowTimeOut}  />   
             </div>
-        )
-
-            
+        )            
     }
 }
 
@@ -53,15 +42,13 @@ const mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         totalPagesCount: state.usersPage.totalPagesCount,
         pageSize: state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isFollowTimeOut: state.usersPage.isFollowTimeOut
     }
 }
 
-export default connect(mapStateToProps, {
-    followUser,
-    unfollowUser,
-    setUsers,
-    setCurrentPage,
-    setTotalPagesCount,
-    setIsFetching
-})(UsersContainer)
+
+export default compose(
+    connect(mapStateToProps, {follow, unfollow, setFollowTimeOut, getUsers}),
+    RedirectLogin
+)(UsersContainer)

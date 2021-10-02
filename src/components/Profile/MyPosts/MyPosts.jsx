@@ -1,7 +1,11 @@
 import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import FormControl from '../../common/FormControl'
+import { isEmpty, MaxLengthCreator } from '../../validators/validators'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
+const validateLength20 = MaxLengthCreator(20)
 
 const MyPosts = (props) => {
     const likePost = (index) => {
@@ -13,30 +17,35 @@ const MyPosts = (props) => {
                                                         likePost={likePost} 
                                                         index={index} text={post.text} 
                                                         likes_count={post.likes_count}/>))
-
-    const updatePostText = (event) => {
-        const text = event.target.value 
-        props.updatePostText(text)
-    }
     
-    const addPost = () => {
-        props.addNewPost()
+    const addPost = (value) => {
+        props.addNewPost(value.postText)
     }
 
     return (
         <div>
-            <div className={s.add_post}>
-                <input onChange={updatePostText}
-                       value={props.newPostText} 
-                       className={s.input_post} 
-                       type='text' placeholder='Type something...'/>
-                <button onClick={addPost} className={s.add_post_btn}>Add</button>
-            </div>
+            <ReduxAddPostForm onSubmit={addPost} />
+            
             <div className={s.posts}>
                 {posts}
             </div>
         </div>
     )
 }
+
+const AddPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={s.add_post}>
+                <Field className={s.input_post} validate={[isEmpty, validateLength20]} name='postText'
+                    component={FormControl} placeholder='Type something...' />
+                
+            </div>
+            <button className={s.add_post_btn}>Add</button>
+        </form>
+    )
+}
+
+const ReduxAddPostForm = reduxForm({form: 'add-post-form'})(AddPostForm)
 
 export default MyPosts

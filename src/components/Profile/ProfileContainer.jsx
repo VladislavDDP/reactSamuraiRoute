@@ -1,46 +1,42 @@
 import Profile from './Profile'
 import React from 'react'
-import { setUserProfile } from '../../redux/profileReducer'
+import { setUserProfile, setOwnProfile, getUserStatus, updateUserStatus } from '../../redux/profileReducer'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { profileAPI } from '../API/api'
+import { RedirectLogin } from '../hoc/RedirectLogin'
+import { compose } from 'redux'
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
-
+            
         if (!userId) {
-            
-            profileAPI.setMyProfile().then(
-                response => {
-                    if (!response.resultCode) {
-                        profileAPI.setUserProfile(response.data.id)
-                            .then(
-                                response => {
-                                    this.props.setUserProfile(response)
-                                }
-                            )
-                    }
-                }
-            )
-            
+            this.props.setOwnProfile()
+            this.props.getUserStatus(this.props.userId)
         } else {
-            
-            profileAPI.setUserProfile(userId).then(response => this.props.setUserProfile(response))
+            this.props.setUserProfile(userId)
+            this.props.getUserStatus(userId)
         }
+
+        
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile} updateStatus={this.props.updateUserStatus}/>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
+    userId: state.auth.userId
 })
 
-const withRouterUserProfile = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, { setUserProfile })(withRouterUserProfile)
+export default compose(
+    connect(mapStateToProps, { setUserProfile, setOwnProfile, getUserStatus, updateUserStatus }),
+    withRouter,
+    RedirectLogin
+)(ProfileContainer)
