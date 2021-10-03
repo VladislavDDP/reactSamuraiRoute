@@ -1,3 +1,5 @@
+import { reset } from "redux-form"
+
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const SET_ACTIVE_CHAT_WITH_USER = 'SET_ACTIVE_CHAT_WITH_USER'
 
@@ -50,5 +52,12 @@ const dialogsReducer = (state=initialState, action) => {
 // action creators for dialogs page
 export const sendMessage = (message) => ({type: SEND_MESSAGE, message})
 export const setActiveChatWithUser = (id) => ({type: SET_ACTIVE_CHAT_WITH_USER, id})
+
+export const sendMessageToUser = (message) => {
+    return (dispatch) => {
+        dispatch(sendMessage(message))
+        dispatch(reset('send-message-form'))
+    }
+}
 
 export default dialogsReducer

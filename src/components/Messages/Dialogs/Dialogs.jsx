@@ -12,7 +12,7 @@ const Dialogs = (props) => {
                     <Message key={message.id} text={message.text} sender={message.sender} />))
 
     const sendMessage = (value) => {
-        props.sendMessage(value.messageBody)
+        props.sendMessageToUser(value.messageBody)
     }
 
     return (
@@ -34,7 +34,10 @@ const MessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.send_message}>
-                <Field component='textarea' validate={[isEmpty]} className={s.messageTextarea} placeholder='Type message...' name="messageBody" />
+                <Field component='textarea' validate={[isEmpty]}
+                       className={s.messageTextarea} 
+                       placeholder='Type message...' 
+                       name="messageBody" />
                 <button className={s.send_message_btn}>&gt;</button>
             </div>
         </form>

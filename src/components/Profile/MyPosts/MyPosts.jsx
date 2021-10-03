@@ -19,7 +19,7 @@ const MyPosts = (props) => {
                                                         likes_count={post.likes_count}/>))
     
     const addPost = (value) => {
-        props.addNewPost(value.postText)
+        props.addPost(value.postText)
     }
 
     return (
@@ -37,11 +37,12 @@ const AddPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.add_post}>
-                <Field className={s.input_post} validate={[isEmpty, validateLength20]} name='postText'
-                    component={FormControl} placeholder='Type something...' />
+                <Field className={s.input_post} 
+                       validate={[isEmpty, validateLength20]} 
+                       name='postText'
+                       component={FormControl} placeholder='Type something...' />
                 <button className={s.add_post_btn}>Add</button>
-            </div>
-            
+            </div> 
         </form>
     )
 }

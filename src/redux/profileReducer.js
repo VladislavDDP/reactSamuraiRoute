@@ -1,3 +1,4 @@
+import { reset } from "redux-form"
 import { profileAPI } from "../components/API/api"
 
 const ADD_NEW_POST = 'ADD_NEW_POST'
@@ -102,6 +103,13 @@ export const updateUserStatus = (status) => {
                 }
             })
                 
+    }
+}
+
+export const addPost = (text) => {
+    return (dispatch) => {
+        dispatch(addNewPost(text))
+        dispatch(reset('add-post-form'))
     }
 }
 

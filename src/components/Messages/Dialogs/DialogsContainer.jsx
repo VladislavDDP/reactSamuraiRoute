@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { sendMessage, setActiveChatWithUser } from '../../../redux/dialogsReducer'
+import { sendMessageToUser, setActiveChatWithUser } from '../../../redux/dialogsReducer'
 import { RedirectLogin } from '../../hoc/RedirectLogin'
 import Dialogs from './Dialogs'
 
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {sendMessage, setActiveChatWithUser}),
+    connect(mapStateToProps, {sendMessageToUser, setActiveChatWithUser}),
     RedirectLogin
 
 )(Dialogs)
