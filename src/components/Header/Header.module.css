@@ -8,8 +8,20 @@
   color: #fff;
 }
 
+.burger {
+  display: none;
+}
+
+.burger div {
+  background: #fff;
+  height: 2px;
+  margin: 5px;
+  width: 25px;
+}
+
 .profile_header {
   display: flex;
+  align-items: center;
 }
 
 .login {
@@ -33,4 +45,33 @@
 .logout_btn:hover {
   background: hsl(0, 0%, 100%);
   color: #f84c4cd2;
+}
+
+
+@media screen and (max-width: 768px) {
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .profile_header  {
+    align-items: center;
+    background: rgb(153, 151, 151);
+    background-color: rgb(32, 30, 32);
+    border-radius: 20px;
+    border: 2px solid rgb(58, 58, 58);
+    display: none;
+    font-weight: 600;
+    justify-content: space-evenly;
+    padding: 10px;
+    position: fixed;
+    right: 80px;
+    top: 55px;
+    width: 200px;
+    z-index: 10;
+  }
+
+  .active {
+    display: flex;
+  }
 }

@@ -5,7 +5,8 @@ const FormControl = ({input, meta, ...props}) => {
     return (    
         <div>
             <div>
-                <input value={meta.submiting ? '' : input.value } {...input} {...props} className={s.input + ' ' +  (status ? s.error : '')} />
+                <input value={meta.submiting ? '' : input.value } {...input} {...props} 
+                       className={s.input + ' ' +  (status ? s.error : '')} />
                 {status && <span className={s.error_alert}> {meta.error} </span>}
             </div>
         </div>

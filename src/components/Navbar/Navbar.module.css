@@ -12,6 +12,40 @@
   .nav {
     display: none;
   }
+  .burger {
+    align-items: center;
+    background-color: rgb(32, 30, 32);
+    border: 2px solid rgb(58, 58, 58);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    grid-area: b;
+    height: 15px;
+    justify-content: center;
+    padding: 15px;
+    width: 15px;
+  }
+  
+  .burger:hover {
+    background: rgb(107, 107, 107);
+  }
+  
+  .burger::after {
+    content: '<>';
+    color: #fff;
+  }
+
+  .activated_navbar {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    right: 0px;
+    top: 130px;;
+    z-index: 10;
+  }
 }
 
 .nav a {
@@ -39,4 +73,5 @@
   margin-bottom: 10px;
   padding: 5px;
 }
+
 

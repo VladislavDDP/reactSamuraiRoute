@@ -5,6 +5,11 @@ import { logout } from '../../redux/authReducer'
 import { Redirect } from 'react-router'
 
 const Header = (props) => {
+    const openBurger = () => {
+        const menu = document.querySelector(`.${s.profile_header}`)
+        menu.classList.toggle(`${s.active}`)
+    }
+
     return (
         <div className={s.header}>
             <div></div>
@@ -20,6 +25,12 @@ const Header = (props) => {
                 { props.isAuth 
                 ? <button className={s.logout_btn} onClick={props.logout}>exit</button> 
                 : <Redirect to={'/login'} /> }
+            </div>
+
+            <div className={s.burger} onClick={openBurger}>
+                <div className={s.line1}></div>
+                <div className={s.line2}></div>
+                <div className={s.line3}></div>
             </div>
             
         </div>  

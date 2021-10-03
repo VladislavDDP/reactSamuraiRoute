@@ -1,13 +1,37 @@
 div {
     position: relative;
 }
+
+button {
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: .6em;
+    font-weight: 700;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.users_table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.user_intro {
+    margin-left: 20px;
+    max-width: 150px;
+}
+
 .profilePhoto {
-    width: 15vw;
+    width: 150px;
     margin-top: 15px;
 }
 
 .selectedPage {
-    background: rgb(255, 105, 180);
+    background: #fdfb797c;
+    outline: 1px solid #000;
 }
 
 .preloader {
@@ -18,15 +42,31 @@ div {
     transform: translate(-50%);
 }
 
+.follow_btn {
+    background: rgb(32, 30, 32);
+}
+
+.unfollow_btn{
+    background: #fdfb797c;
+    outline: 1px solid #000;
+    color: #000;
+}
+
+.usersPage {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
 span {
     margin: 10px;
     padding: 5px;
-    background: rgb(255, 228, 241);
+    background: rgb(248, 238, 209);
     cursor: pointer;
 }
 
 span:hover {
-    background: rgb(255, 160, 207);
+    background: #5c5a077c;
 }
 
 button:disabled {

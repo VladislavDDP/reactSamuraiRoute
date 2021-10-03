@@ -4,7 +4,8 @@
 
 .error_alert {
     font-size: 10px;
-    position: relative;
+    position: absolute;
+    
 }
 
 .input {

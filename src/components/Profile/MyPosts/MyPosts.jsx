@@ -39,9 +39,9 @@ const AddPostForm = (props) => {
             <div className={s.add_post}>
                 <Field className={s.input_post} validate={[isEmpty, validateLength20]} name='postText'
                     component={FormControl} placeholder='Type something...' />
-                
+                <button className={s.add_post_btn}>Add</button>
             </div>
-            <button className={s.add_post_btn}>Add</button>
+            
         </form>
     )
 }
