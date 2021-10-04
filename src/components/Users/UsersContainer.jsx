@@ -5,6 +5,7 @@ import Preloader from './Preloader'
 import {follow, unfollow, setFollowTimeOut, getUsers} from './../../redux/usersReducer';
 import { compose } from "redux";
 import { RedirectLogin } from "../hoc/RedirectLogin";
+import { getCurrentPage, getIsFetching, getIsFollowTimeOut, getPageSize, getStateUsers, getTotalPagesCount } from "../selectors/users-selectors";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -38,12 +39,12 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        currentPage: state.usersPage.currentPage,
-        totalPagesCount: state.usersPage.totalPagesCount,
-        pageSize: state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching,
-        isFollowTimeOut: state.usersPage.isFollowTimeOut
+        users: getStateUsers(state),
+        currentPage: getCurrentPage(state),
+        totalPagesCount: getTotalPagesCount(state),
+        pageSize: getPageSize(state),
+        isFetching: getIsFetching(state),
+        isFollowTimeOut: getIsFollowTimeOut(state) 
     }
 }
 

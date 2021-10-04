@@ -63,23 +63,6 @@ export const likePost = (index) => ({type: LIKE_POST, index})
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (text) => ({type: SET_USER_STATUS, text})
 
-export const setOwnProfile = () => {
-    return (dispatch) => {
-        profileAPI.setMyProfile().then(
-            response => {
-                if (!response.resultCode) {
-                    profileAPI.setUserProfile(response.data.id)
-                        .then(
-                            response => {
-                                dispatch(setProfile(response))
-                            }
-                        )
-                }
-            }
-        )
-    }
-}
-
 export const setUserProfile = (userId) => {
     return (dispatch) => {
         profileAPI.setUserProfile(userId).then(response => dispatch(setProfile(response)))
