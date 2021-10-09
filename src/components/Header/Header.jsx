@@ -6,8 +6,8 @@ import { Redirect } from 'react-router'
 
 const Header = (props) => {
     const openBurger = () => {
-        const menu = document.querySelector(`.${s.profile_header}`)
-        menu.classList.toggle(`${s.active}`)
+        const profile_header = props.profile_header.current
+        profile_header.classList.toggle(`${s.active}`)
     }
 
     return (
@@ -18,7 +18,7 @@ const Header = (props) => {
             MICROBIUS
             ~-~-~
 
-            <div className={s.profile_header}>
+            <div className={s.profile_header} ref={props.profile_header} onClick={openBurger}>
                 <div className={s.login}>
                     { props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
                 </div>

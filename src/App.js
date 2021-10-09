@@ -28,10 +28,13 @@ class App extends React.Component {
             return <Preloader />
         }
 
+        const navbar = React.createRef()
+        const profile_header = React.createRef()
+
         return (
             <div className={s.app_wrapper}>
-                <HeaderContainer />
-                <Navbar />
+                <HeaderContainer profile_header={profile_header} />
+                <Navbar navbar={navbar} />
                 <div className={s.content}>
                     <Route path='/profile/:userId?' 
                             render={() => <ProfileContainer />} />
