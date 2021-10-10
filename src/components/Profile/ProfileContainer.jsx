@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { RedirectLogin } from '../hoc/RedirectLogin'
 import { compose } from 'redux'
+import { getProfile, getProfileStatus, getUserId } from '../selectors/profile-selectors'
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -27,9 +28,9 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    userId: state.auth.userId
+    profile: getProfile(state),
+    status: getProfileStatus(state),
+    userId: getUserId(state)
 })
 
 
