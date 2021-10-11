@@ -3,13 +3,15 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/authReducer'
 import { Redirect } from 'react-router'
+import React from 'react'
 
-const Header = (props) => {
+const Header = React.memo((props) => {
+
     const openBurger = () => {
         const profile_header = props.profile_header.current
         profile_header.classList.toggle(`${s.active}`)
     }
-
+    
     return (
         <div className={s.header}>
             <div></div>
@@ -35,6 +37,6 @@ const Header = (props) => {
             
         </div>  
     )
-}
+})
 
 export default connect(null, {logout})(Header)
