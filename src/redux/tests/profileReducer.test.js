@@ -1,7 +1,6 @@
 import profileReducer from './../profileReducer'
 
 test('add new message test', () => {
-
     const action = {type: 'ADD_NEW_POST', text: 'New post for testing'}
     const initialState = {
         posts: [

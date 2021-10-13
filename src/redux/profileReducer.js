@@ -5,6 +5,7 @@ const ADD_NEW_POST = 'ADD_NEW_POST'
 const LIKE_POST = 'LIKE_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 const initialState = {
     posts: [
@@ -26,6 +27,12 @@ const profileReducer = (state=initialState, action) => {
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
+            }
+
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id === action.Id) 
             }
             
         case LIKE_POST: 
@@ -58,6 +65,7 @@ const profileReducer = (state=initialState, action) => {
 
 // action creators for profile page
 export const addNewPost = (text) => ({type: ADD_NEW_POST, text})
+export const deletePost = (id) => ({type: DELETE_POST, id})
 export const likePost = (index) => ({type: LIKE_POST, index})
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (text) => ({type: SET_USER_STATUS, text})
