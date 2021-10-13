@@ -26,7 +26,6 @@ const profileReducer = (state=initialState, action) => {
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
-                newPostText: ''
             }
             
         case LIKE_POST: 
