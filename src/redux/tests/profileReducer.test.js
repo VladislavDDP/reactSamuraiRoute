@@ -19,3 +19,9 @@ test('deleting post from profile page test', () => {
     const newState = profileReducer({...initialState}, action)
     expect(newState.posts.length).toBe(2)
 })
+
+test('remove non-exsisting post from profile page test', () => {
+    const action = {type: 'DELETE_POST', id: 10}
+    const newState = profileReducer({...initialState}, action)
+    expect(newState.posts.length).toBe(3)
+})
