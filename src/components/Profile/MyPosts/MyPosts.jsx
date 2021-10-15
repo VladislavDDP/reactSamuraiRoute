@@ -7,11 +7,7 @@ import Post from './Post/Post'
 
 const validateLength20 = MaxLengthCreator(20)
 
-class MyPosts extends React.Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps !== this.props || nextState !== this.state    
-    }
-
+class MyPosts extends React.PureComponent {
     render() {
         const likePost = (index) => {
             this.props.likePost(index)
@@ -29,7 +25,6 @@ class MyPosts extends React.Component {
         return (
             <div>
                 <ReduxAddPostForm onSubmit={addPost} />
-                
                 <div className={s.posts}>
                     {posts}
                 </div>

@@ -1,8 +1,8 @@
 import { stopSubmit } from "redux-form"
 import { loginAPI } from "../components/API/api" 
 
-const AUTH_USER = 'AUTH_USER'
-const AUTHORIZATION = 'AUTHORIZATION'
+const AUTH_USER = 'auth/AUTH_USER'
+const AUTHORIZATION = 'auth/AUTHORIZATION'
 
 const initialState = {
     userId: null,

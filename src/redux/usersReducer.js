@@ -1,12 +1,12 @@
 import { followAPI, userAPI } from "../components/API/api"
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_STATE = 'SET_STATE'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT'
-const SET_IS_FETCHING = 'SET_IS_FETCHING'
-const SET_FOLLOW_TIMEOUT = 'SET_FOLLOW_TIMEOUT'
+const FOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/UNFOLLOW'
+const SET_STATE = 'users/SET_STATE'
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+const SET_TOTAL_PAGES_COUNT = 'users/SET_TOTAL_PAGES_COUNT'
+const SET_IS_FETCHING = 'users/SET_IS_FETCHING'
+const SET_FOLLOW_TIMEOUT = 'users/SET_FOLLOW_TIMEOUT'
 
 
 const initialState = {
@@ -80,7 +80,6 @@ const usersReducer = (state=initialState, action) => {
     }
 }
 
-// action creators for users page
 export const followUser = (userId) => ({type: FOLLOW, userId})
 export const unfollowUser = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_STATE, users})
@@ -90,43 +89,35 @@ export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching
 export const setFollowTimeOut = (isFetching, userId) => ({type: SET_FOLLOW_TIMEOUT, isFetching, userId})
 
 export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setCurrentPage(currentPage))
         dispatch(setIsFetching(true))
-        userAPI.getUsers(currentPage, pageSize).then(response => {
-            dispatch(setUsers(response.items))
-            dispatch(setTotalPagesCount(response.totalCount > 1000? 80 : 50))
-            dispatch(setIsFetching(false))
-        })
+        const response = await userAPI.getUsers(currentPage, pageSize)
+        dispatch(setUsers(response.items))
+        dispatch(setTotalPagesCount(response.totalCount > 1000? 80 : 50))
+        dispatch(setIsFetching(false))
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowTimeOut(true, userId))
-        followAPI.unfollowUser(userId)
-        .then(
-            response => {
-                if (!response.resultCode) {
-                    dispatch(unfollowUser(userId))
-                }
-                dispatch(setFollowTimeOut(false, userId))
-            }   
-        )
+        const response = await followAPI.unfollowUser(userId)
+        if (!response.resultCode) {
+            dispatch(unfollowUser(userId))
+        }
+        dispatch(setFollowTimeOut(false, userId))
     }
 }
 
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowTimeOut(true, userId))
-        followAPI.followUser(userId).then(
-            response => {
-                if (!response.resultCode) {
-                    dispatch(followUser(userId))
-                }    
-                dispatch(setFollowTimeOut(false, userId))
-            }
-        )
+        const response = await followAPI.followUser(userId)
+        if (!response.resultCode) {
+            dispatch(followUser(userId))
+        }    
+        dispatch(setFollowTimeOut(false, userId))
     }
 }
 

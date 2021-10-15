@@ -1,11 +1,11 @@
 import { reset } from "redux-form"
 import { profileAPI } from "../components/API/api"
 
-const ADD_NEW_POST = 'ADD_NEW_POST'
-const LIKE_POST = 'LIKE_POST'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const SET_USER_STATUS = 'SET_USER_STATUS'
-const DELETE_POST = 'DELETE_POST'
+const ADD_NEW_POST = 'profile/ADD_NEW_POST'
+const LIKE_POST = 'profile/LIKE_POST'
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
+const SET_USER_STATUS = 'profile/SET_USER_STATUS'
+const DELETE_POST = 'profile/DELETE_POST'
 
 const initialState = {
     posts: [

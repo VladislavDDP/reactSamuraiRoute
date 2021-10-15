@@ -1,7 +1,7 @@
 import { reset } from "redux-form"
 
-const SEND_MESSAGE = 'SEND_MESSAGE'
-const SET_ACTIVE_CHAT_WITH_USER = 'SET_ACTIVE_CHAT_WITH_USER'
+const SEND_MESSAGE = 'dialogs/SEND_MESSAGE'
+const SET_ACTIVE_CHAT_WITH_USER = 'dialogs/SET_ACTIVE_CHAT_WITH_USER'
 
 const initialState = {
     users: [

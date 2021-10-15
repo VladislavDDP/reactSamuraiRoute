@@ -15,14 +15,12 @@ const Users = (props) => {
             <div className={s.page_numbers}>
                 {
                     pagesNumbers.map(page => {
-                        return <span key={page} className={props.currentPage === page && s.selectedPage}  
+                        return <span key={page} className={props.currentPage === page ? s.selectedPage : ''}  
                                         onClick={() => props.setPage(page)}>{page}</span>
                     })
                 }
             </div>
-
             <br />
-
             <div className={s.users_table}>
             {
                 props.users.map(u => { 
