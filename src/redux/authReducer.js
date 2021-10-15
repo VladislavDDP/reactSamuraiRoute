@@ -36,42 +36,33 @@ export const authUserProfile = (userId, email, login, isAuth) => (
 export const authorization = (userId) => ({type: AUTHORIZATION, data: {userId}})
 
 export const authAccount = () => {
-    return (dispatch) => {
-        loginAPI.authMe().then(
-            response => {
-                const {id, email, login} = response.data
-                if (!response.resultCode) {
-                    dispatch(authUserProfile(id, email, login, true))
-                }
-            }
-        )
+    return async (dispatch) => {
+        const response = await loginAPI.authMe()
+        const {id, email, login} = response.data
+        if (!response.resultCode) {
+            dispatch(authUserProfile(id, email, login, true))
+        }
     }
 }
 
 export const login = (email, password, rememberMe=false) => {
-    return (dispatch) => {
-        loginAPI.login(email, password, rememberMe).then(
-            response => {
-                if (response.resultCode === 0) {
-                    dispatch(authAccount())
-                } else {
-                    const message = response.messages.length ? response.messages[0] : 'Error on server...'
-                    dispatch(stopSubmit('login-form', {_error: message}))
-                }
-            }
-        )
+    return async (dispatch) => {
+        const response = await loginAPI.login(email, password, rememberMe)
+        if (response.resultCode === 0) {
+            dispatch(authAccount())
+        } else {
+            const message = response.messages.length ? response.messages[0] : 'Error on server...'
+            dispatch(stopSubmit('login-form', {_error: message}))
+        }
     }
 }
 
 export const logout = () => {
-    return (dispatch) => {
-        loginAPI.logout().then(
-            response => {
-                if (response.resultCode === 0) {
-                    dispatch(authUserProfile(null, null, null, false))
-                }
-            }
-        )
+    return async (dispatch) => {
+        const response = await loginAPI.logout()
+        if (response.resultCode === 0) {
+            dispatch(authUserProfile(null, null, null, false))
+        }
     }
 }
 
