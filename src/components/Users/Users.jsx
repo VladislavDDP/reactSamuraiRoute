@@ -13,7 +13,7 @@ const Users = (props) => {
 
     return (
         <div className={s.usersPage}>
-            <Paginator setPage={props.setPage} pagesNumbers={pagesNumbers} 
+            <Paginator setPage={props.setPage} pagesNumbers={pagesNumbers}
                        currentPage={props.currentPage} selectedPage={s.selectedPage} />
             <br />
             <div className={s.users_table}>

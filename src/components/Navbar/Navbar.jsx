@@ -2,16 +2,16 @@ import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.css'
 import React from 'react'
 
-const Navbar = (props) => {
+const Navbar = ({navbar}) => {
 
     const openNavbar = () => {
-        const navigation = props.navbar.current
+        const navigation = navbar.current
         navigation.classList.toggle(`${s.activated_navbar}`)
     }
 
     return (
         <>
-            <nav className={s.nav} ref={props.navbar} onClick={openNavbar}>
+            <nav className={s.nav} ref={navbar} onClick={openNavbar}>
                 <div className={s.item}><NavLink to="/profile" activeClassName={s.active}>Profile</NavLink></div>
                 <div className={s.item}><NavLink to="/messages" activeClassName={s.active}>Messages</NavLink></div>
                 <div className={s.item}><NavLink to="/users" activeClassName={s.active}>Users</NavLink></div>
