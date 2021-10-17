@@ -11,13 +11,13 @@ const initialState = {
 test('add new post on page test', () => {
     const action = {type: 'ADD_NEW_POST', text: 'New post for testing'}
     const newState = profileReducer({...initialState}, action)
-    expect(newState.posts.length).toBe(4)
+    expect(newState.posts.length).toBe(3)
 })
 
 test('deleting post from profile page test', () => {
     const action = {type: 'DELETE_POST', id: 2}
     const newState = profileReducer({...initialState}, action)
-    expect(newState.posts.length).toBe(2)
+    expect(newState.posts.length).toBe(3)
 })
 
 test('remove non-exsisting post from profile page test', () => {
