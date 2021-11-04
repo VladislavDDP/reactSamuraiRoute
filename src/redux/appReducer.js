@@ -16,10 +16,12 @@ const appReducer = (state=initialState, action) => {
                 isInitialized: true
             }
         case SWITCH_THEME: 
-            localStorage.setItem('theme', state.theme === 'light' ? 'dark' : 'light')
+            const newTheme = state.theme === 'light' ? 'dark' : 'light'
+            console.log(newTheme);
+            localStorage.setItem('theme', newTheme)
             return {
                 ...state,
-                theme: state.theme === 'light' ? 'dark' : 'light'
+                theme: newTheme
             }
         default:
             return state

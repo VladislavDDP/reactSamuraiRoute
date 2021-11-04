@@ -1,5 +1,5 @@
 export const darkTheme = {
-    body: '#000',
+    body: '#333',
     fontColor: '#fff'
 }
 

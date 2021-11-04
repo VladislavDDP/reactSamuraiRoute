@@ -23,10 +23,6 @@ import { lightTheme, darkTheme } from './components/Themes'
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
-        this.themeMode = this.props.theme === 'light' ? lightTheme : darkTheme;
-    }
-    componentDidUpdate() {
-        this.themeMode = this.props.theme === 'light' ? lightTheme : darkTheme;
     }
 
     render() {
@@ -36,7 +32,7 @@ class App extends React.Component {
         const navbar = React.createRef()
         const profile_header = React.createRef()
         return (
-            <ThemeProvider theme={this.themeMode}>
+            <ThemeProvider theme={this.props.theme === 'light' ? lightTheme : darkTheme}>
                 <GlobalStyle/>
                 <div className={s.app_wrapper}>
                     <HeaderContainer profile_header={profile_header} />

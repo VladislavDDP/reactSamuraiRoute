@@ -9,10 +9,10 @@ import s from './../common/FormControl.module.css'
 const LoginForm = ({error, handleSubmit}) => {
     return (
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className={s.login_input}>
                     <Field component={FormControl} validate={[isEmpty]} type="text" name={'login_email'} placeholder={'Login'} />
                 </div>
-                <div>
+                <div className={s.login_input}>
                     <Field component={FormControl} validate={[isEmpty]} type="password" name={'password'} placeholder={'Password'} />
                 </div>
                 <div>
@@ -42,10 +42,9 @@ const Login = (props) => {
     }
     
     return (
-        <div>
+        <div className={s.login_container}>
             { props.isAuth ? <Redirect to={'/profile'} /> : '' }
-
-            <h3>Login page</h3>
+            <h3>Login</h3>
             <ReduxLoginForm onSubmit={onSubmit} />
         </div>
     )

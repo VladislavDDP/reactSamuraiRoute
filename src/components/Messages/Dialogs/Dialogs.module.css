@@ -77,12 +77,12 @@
 .fromMe {
     color: rgb(34, 33, 33);
     float: right;
-    background: rgb(180, 88, 241);
+    background: rgb(138, 138, 138);
     border-radius: 10px 10px 0 10px;
 }
 
 .fromMe:hover {
-    background: rgb(151, 74, 202);
+    background: rgb(190, 190, 190);
 }
 
 .fromFriend {
