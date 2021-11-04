@@ -14,7 +14,11 @@ const Header = React.memo((props) => {
     
     return (
         <div className={s.header}>
-            <div></div>
+            <div>
+                <button className={s.switch_theme_btn} onClick={props.switchTheme}>
+                    {props.theme === 'light' ? <div>&#9790;</div> : <div>&#9728;</div> }
+                </button>
+            </div>
 
             ~-~-~
             MICROBIUS

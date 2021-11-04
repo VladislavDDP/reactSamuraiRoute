@@ -16,49 +16,56 @@ import React from 'react'
 import { compose } from 'redux'
 import { initializeApp } from './redux/appReducer'
 import Preloader from './components/Users/Preloader'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './components/globalStyle'
+import { lightTheme, darkTheme } from './components/Themes'
 
 class App extends React.Component {
-
     componentDidMount() {
         this.props.initializeApp()
+        this.themeMode = this.props.theme === 'light' ? lightTheme : darkTheme;
+    }
+    componentDidUpdate() {
+        this.themeMode = this.props.theme === 'light' ? lightTheme : darkTheme;
     }
 
     render() {
         if (!this.props.isInitialized) {
             return <Preloader />
         }
-
         const navbar = React.createRef()
         const profile_header = React.createRef()
-
         return (
-            <div className={s.app_wrapper}>
-                <HeaderContainer profile_header={profile_header} />
-                <Navbar navbar={navbar} />
-                <div className={s.content}>
-                    <Route path='/profile/:userId?' 
-                            render={() => <ProfileContainer />} />
-                    <Route path='/messages' 
-                            render={() => <Messages />} />
-                    <Route path='/login' 
-                            render={() => <Login />} />
-                    <Route path='/users' 
-                            render={() => <UsersContainer />} />
-                    <Route path='/news' component={News} />
-                    <Route path='/music' component={Music} />
-                    <Route path='/settings' component={Settings} />
+            <ThemeProvider theme={this.themeMode}>
+                <GlobalStyle/>
+                <div className={s.app_wrapper}>
+                    <HeaderContainer profile_header={profile_header} />
+                    <Navbar navbar={navbar} />
+                    <div className={s.content}>
+                        <Route path='/profile/:userId?' 
+                                render={() => <ProfileContainer />} />
+                        <Route path='/messages' 
+                                render={() => <Messages />} />
+                        <Route path='/login' 
+                                render={() => <Login />} />
+                        <Route path='/users' 
+                                render={() => <UsersContainer />} />
+                        <Route path='/news' component={News} />
+                        <Route path='/music' component={Music} />
+                        <Route path='/settings' component={Settings} />
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
+            </ThemeProvider>
       )
   }
 }
-
 const mapDispatchToProps = (state) => ({
-    isInitialized: state.app.isInitialized
+    isInitialized: state.app.isInitialized,
+    theme: state.app.theme
 })
-
 export default compose(
     withRouter,
     connect(mapDispatchToProps, {initializeApp})
 )(App)
+
