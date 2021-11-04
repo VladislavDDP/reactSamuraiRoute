@@ -38,6 +38,8 @@ class App extends React.Component {
                     <HeaderContainer profile_header={profile_header} />
                     <Navbar navbar={navbar} />
                     <div className={s.content}>
+                        <Route exact path='/' render={() => <News />}  /> 
+
                         <Route path='/profile/:userId?' 
                                 render={() => <ProfileContainer />} />
                         <Route path='/messages' 

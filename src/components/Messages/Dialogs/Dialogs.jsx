@@ -1,18 +1,17 @@
 import s from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog'
-import Message from './Message/Message'
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { isEmpty } from '../../validators/validators'
+import { Route } from 'react-router'
+import ExactMessages from './ExactMessages'
 
 const Dialogs = (props) => {
     let users = props.users.map(user => (
                     <Dialog key={user.id} id={user.id} name={user.name} setActiveChatWithUser={props.setActiveChatWithUser} isActive={user.isActive} />))
-    let messages = props.messages.map(message => (
-                    <Message key={message.id} text={message.text} sender={message.sender} />))
 
     const sendMessage = (value) => {
-        props.sendMessageToUser(value.messageBody)
+        props.sendMessageToUser(value.messageBody, props.activeId - 1)
     }
 
     return (
@@ -22,10 +21,11 @@ const Dialogs = (props) => {
             </div>
 
             <div className={s.messsages}>
-                {messages}
+                <Route path='/messages/:userId?' render={ () => <ExactMessages users={props.users} id={props.activeId - 1} />  } />
             </div>
 
-            <ReduxMessageForm onSubmit={sendMessage}/>
+            <ReduxMessageForm onSubmit={sendMessage} />
+
         </div>
     )
 }

@@ -8,7 +8,7 @@ import Dialogs from './Dialogs'
 const mapStateToProps = (state) => {
     return {
         users: state.dialogsPage.users,
-        messages: state.dialogsPage.messages,
+        activeId: state.dialogsPage.activeId
     }
 }
 
