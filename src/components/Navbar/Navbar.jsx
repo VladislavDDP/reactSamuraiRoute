@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.css'
 import React from 'react'
 
-const Navbar = ({navbar}) => {
+const Navbar = React.memo(({navbar}) => {
 
     const openNavbar = () => {
         const navigation = navbar.current
@@ -22,6 +22,6 @@ const Navbar = ({navbar}) => {
             <div onClick={openNavbar} className={s.burger}></div>
         </>
     )
-}
+})
 
 export default Navbar

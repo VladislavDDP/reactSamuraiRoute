@@ -1,7 +1,8 @@
 import s from './News.module.css'
 import img from './../../../images/default_avatar.png'
+import React from 'react'
 
-const News = (props) => {
+const News = React.memo((props) => {
     return (
         <div className={s.news}>
             <div>News: </div>
@@ -21,6 +22,6 @@ const News = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default News
