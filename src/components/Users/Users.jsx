@@ -1,6 +1,7 @@
 import s from './Users.module.css'
 import avatar from "../../images/samurai.jpg"
 import { NavLink } from 'react-router-dom'
+import Paginator from './Paginator'
 
 const Users = (props) => {
     const pagesNumbers = []
@@ -12,17 +13,9 @@ const Users = (props) => {
 
     return (
         <div className={s.usersPage}>
-            <div className={s.page_numbers}>
-                {
-                    pagesNumbers.map(page => {
-                        return <span key={page} className={props.currentPage === page && s.selectedPage}  
-                                        onClick={() => props.setPage(page)}>{page}</span>
-                    })
-                }
-            </div>
-
+            <Paginator setPage={props.setPage} pagesNumbers={pagesNumbers}
+                       currentPage={props.currentPage} selectedPage={s.selectedPage} />
             <br />
-
             <div className={s.users_table}>
             {
                 props.users.map(u => { 

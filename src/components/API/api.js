@@ -50,7 +50,6 @@ export const loginAPI = {
              .then(response => response.data)
     },
     login(email, password, rememberMe) {
-        debugger
         return instance.post('auth/login', {email, password, rememberMe})
                        .then(response => response.data)
     },

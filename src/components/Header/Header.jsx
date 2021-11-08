@@ -3,22 +3,28 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/authReducer'
 import { Redirect } from 'react-router'
+import React from 'react'
 
-const Header = (props) => {
+const Header = React.memo((props) => {
+
     const openBurger = () => {
-        const menu = document.querySelector(`.${s.profile_header}`)
-        menu.classList.toggle(`${s.active}`)
+        const profile_header = props.profile_header.current
+        profile_header.classList.toggle(`${s.active}`)
     }
-
+    
     return (
         <div className={s.header}>
-            <div></div>
+            <div>
+                <button className={s.switch_theme_btn} onClick={props.switchTheme}>
+                    {props.theme === 'light' ? <div>&#9790;</div> : <div>&#9728;</div> }
+                </button>
+            </div>
 
             ~-~-~
             MICROBIUS
             ~-~-~
 
-            <div className={s.profile_header}>
+            <div className={s.profile_header} ref={props.profile_header} onClick={openBurger}>
                 <div className={s.login}>
                     { props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
                 </div>
@@ -35,6 +41,6 @@ const Header = (props) => {
             
         </div>  
     )
-}
+})
 
 export default connect(null, {logout})(Header)

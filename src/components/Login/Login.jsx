@@ -6,22 +6,22 @@ import { login } from "../../redux/authReducer"
 import { Redirect } from "react-router"
 import s from './../common/FormControl.module.css'
 
-const LoginForm = (props) => {
+const LoginForm = ({error, handleSubmit}) => {
     return (
-            <form onSubmit={props.handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit}>
+                <div className={s.login_input}>
                     <Field component={FormControl} validate={[isEmpty]} type="text" name={'login_email'} placeholder={'Login'} />
                 </div>
-                <div>
+                <div className={s.login_input}>
                     <Field component={FormControl} validate={[isEmpty]} type="password" name={'password'} placeholder={'Password'} />
                 </div>
                 <div>
                     <Field component={'input'} type="checkbox" name={'remember_login'} id='remember_login'  />
                     <label htmlFor={'remember_login'}>remember me</label>
                 </div> 
-                { props.error &&
+                { error &&
                     <div className={s.error_box}>
-                        {props.error}
+                        {error}
                     </div>
                 }
                 <br />
@@ -42,10 +42,9 @@ const Login = (props) => {
     }
     
     return (
-        <div>
+        <div className={s.login_container}>
             { props.isAuth ? <Redirect to={'/profile'} /> : '' }
-
-            <h3>Login page</h3>
+            <h3>Login</h3>
             <ReduxLoginForm onSubmit={onSubmit} />
         </div>
     )

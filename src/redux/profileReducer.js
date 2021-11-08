@@ -1,10 +1,11 @@
 import { reset } from "redux-form"
 import { profileAPI } from "../components/API/api"
 
-const ADD_NEW_POST = 'ADD_NEW_POST'
-const LIKE_POST = 'LIKE_POST'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const SET_USER_STATUS = 'SET_USER_STATUS'
+const ADD_NEW_POST = 'profile/ADD_NEW_POST'
+const LIKE_POST = 'profile/LIKE_POST'
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
+const SET_USER_STATUS = 'profile/SET_USER_STATUS'
+const DELETE_POST = 'profile/DELETE_POST'
 
 const initialState = {
     posts: [
@@ -26,7 +27,12 @@ const profileReducer = (state=initialState, action) => {
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
-                newPostText: ''
+            }
+
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.id) 
             }
             
         case LIKE_POST: 
@@ -59,50 +65,31 @@ const profileReducer = (state=initialState, action) => {
 
 // action creators for profile page
 export const addNewPost = (text) => ({type: ADD_NEW_POST, text})
+export const deletePost = (id) => ({type: DELETE_POST, id})
 export const likePost = (index) => ({type: LIKE_POST, index})
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (text) => ({type: SET_USER_STATUS, text})
 
-export const setOwnProfile = () => {
-    return (dispatch) => {
-        profileAPI.setMyProfile().then(
-            response => {
-                if (!response.resultCode) {
-                    profileAPI.setUserProfile(response.data.id)
-                        .then(
-                            response => {
-                                dispatch(setProfile(response))
-                            }
-                        )
-                }
-            }
-        )
-    }
-}
-
 export const setUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.setUserProfile(userId).then(response => dispatch(setProfile(response)))
+    return async (dispatch) => {
+        const response = await profileAPI.setUserProfile(userId)
+        dispatch(setProfile(response))
     }
 }
 
 export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfileStatus(userId)
-            .then(response => dispatch(setStatus(response.data)))
+    return async(dispatch) => {
+        const response = await profileAPI.getProfileStatus(userId)
+        dispatch(setStatus(response.data))
     }
 }
 
 export const updateUserStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateProfileStatus(status)
-            .then(response => {
-                if(response.data.resultCode === 0) {
-                    debugger
-                    dispatch(setStatus(status))
-                }
-            })
-                
+    return async (dispatch) => {
+        const response = await profileAPI.updateProfileStatus(status)
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }                
     }
 }
 

@@ -7,30 +7,30 @@ import Post from './Post/Post'
 
 const validateLength20 = MaxLengthCreator(20)
 
-const MyPosts = (props) => {
-    const likePost = (index) => {
-        props.likePost(index)
-    }
-
-    let posts = props.posts.map((post, index) => (<Post key={post.id}
-                                                        name={post.name} 
-                                                        likePost={likePost} 
-                                                        index={index} text={post.text} 
-                                                        likes_count={post.likes_count}/>))
+class MyPosts extends React.PureComponent {
+    render() {
+        const likePost = (index) => {
+            this.props.likePost(index)
+        }
     
-    const addPost = (value) => {
-        props.addPost(value.postText)
-    }
-
-    return (
-        <div>
-            <ReduxAddPostForm onSubmit={addPost} />
-            
-            <div className={s.posts}>
-                {posts}
+        let posts = this.props.posts.map((post, index) => (<Post key={post.id}
+                                                            name={post.name} 
+                                                            likePost={likePost} 
+                                                            index={index} text={post.text} 
+                                                            likes_count={post.likes_count}/>))
+        
+        const addPost = (value) => {
+            this.props.addPost(value.postText)
+        }
+        return (
+            <div>
+                <ReduxAddPostForm onSubmit={addPost} />
+                <div className={s.posts}>
+                    {posts}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const AddPostForm = (props) => {

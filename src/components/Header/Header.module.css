@@ -8,6 +8,11 @@
   color: #fff;
 }
 
+.switch_theme_btn {
+  background: rgb(0, 0, 0);
+  width: 50px;
+}
+
 .burger {
   display: none;
 }

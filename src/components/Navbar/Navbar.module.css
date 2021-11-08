@@ -1,5 +1,7 @@
 .nav {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   grid-area: n;
   background-color: rgb(32, 30, 32);
   border: 2px solid rgb(58, 58, 58);

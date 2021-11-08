@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.css'
+import React from 'react'
 
-const Navbar = () => {
+const Navbar = React.memo(({navbar}) => {
+
     const openNavbar = () => {
-        const navbar = document.querySelector(`.${s.nav}`)
-        navbar.classList.toggle(`${s.activated_navbar}`)
+        const navigation = navbar.current
+        navigation.classList.toggle(`${s.activated_navbar}`)
     }
 
     return (
         <>
-            <nav className={s.nav}>
+            <nav className={s.nav} ref={navbar} onClick={openNavbar}>
                 <div className={s.item}><NavLink to="/profile" activeClassName={s.active}>Profile</NavLink></div>
                 <div className={s.item}><NavLink to="/messages" activeClassName={s.active}>Messages</NavLink></div>
                 <div className={s.item}><NavLink to="/users" activeClassName={s.active}>Users</NavLink></div>
@@ -20,6 +22,6 @@ const Navbar = () => {
             <div onClick={openNavbar} className={s.burger}></div>
         </>
     )
-}
+})
 
 export default Navbar

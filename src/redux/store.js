@@ -1,7 +1,6 @@
 import dialogsReducer from "./dialogsReducer"
 import profileReducer from "./profileReducer"
 
-// bussiness object for processing user`s data
 const store = {
     _state: {
         profilePage: {

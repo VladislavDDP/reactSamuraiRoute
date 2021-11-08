@@ -3,6 +3,7 @@ body {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: #333;
   font-size: 18px;
+  margin: 0;
 }
 
 body {
@@ -24,10 +25,9 @@ textarea {
 }
 
 .app_wrapper {
-  margin: 5px;
   display: grid;
   grid-template-rows: 70px 270px 1fr 50px;
-  grid-template-columns: 1fr 8fr 3fr 1fr;
+  grid-template-columns: 1fr 6fr 2fr 1fr;
   gap: 10px;
   grid-template-areas:
     "h h h h"
@@ -39,9 +39,10 @@ textarea {
 .content {
   padding: 20px 40px;
   grid-area: c;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  color: #333;
+  border: 1px solid #fff;
+  color: rgb(0, 0, 0);
 }
 
 @media screen and (max-width: 768px) {

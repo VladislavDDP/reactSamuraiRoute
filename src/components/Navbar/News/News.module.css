@@ -1,6 +1,16 @@
 .news {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+}
+
+.news_block {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news_img {
+    width: 40%;
 }

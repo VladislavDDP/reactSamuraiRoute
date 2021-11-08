@@ -1,16 +1,27 @@
 import s from './News.module.css'
+import img from './../../../images/default_avatar.png'
+import React from 'react'
 
-const News = (props) => {
+const News = React.memo((props) => {
     return (
         <div className={s.news}>
-            <div>News</div>
-
-            <div>Event on Schevchenko street</div>
-            <div>Palace of sport</div>
-            <div>Workout with Tommy</div>
-            <div>Drink coffee with milk</div>
+            <div>News: </div>
+            <div>
+                <div className={s.news_block}>
+                    <img className={s.news_img} src={img} alt="news img" />
+                    <p>Event on Schevchenko street</p>
+                </div>
+                <div className={s.news_block}>
+                    <img className={s.news_img} src={img} alt="news img" />
+                    <p>Palace of sport</p>
+                </div>
+                <div className={s.news_block}>
+                    <img className={s.news_img} src={img} alt="news img" />
+                    <p>Workout with Tommy</p>
+                </div>
+            </div>
         </div>
     )
-}
+})
 
 export default News
